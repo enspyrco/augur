@@ -1,0 +1,12 @@
+{
+  "name": "augur",
+  "version": "0.0.1",
+  "description": "People-intelligence engine — discover → dig → fuse → refute → place → weave. Starts from resolved identity, enriches outward.",
+  "type": "module",
+  "bin": { "augur": "bin/augur.mjs" },
+  "scripts": {
+    "dig": "node bin/augur.mjs dig"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
