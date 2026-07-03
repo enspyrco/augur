@@ -14,8 +14,10 @@
 import { github } from "./excavators/github.mjs";
 import { openalex } from "./excavators/openalex.mjs";
 import { companiesHouse } from "./excavators/companies_house.mjs";
+import { patents } from "./excavators/patents.mjs";
+import { orcid } from "./excavators/orcid.mjs";
 
-const EXCAVATORS = [github, openalex, companiesHouse];
+const EXCAVATORS = [github, openalex, patents, orcid, companiesHouse];
 
 /**
  * dig(subject) → { subject, facts:[{predicate,value,method,reliability,source}], veins:[{name,note}], identifiers:{...} }
