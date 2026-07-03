@@ -2,57 +2,65 @@
 // Augur CLI — people-intelligence engine. Build order per AUGUR-DESIGN.md §12: `dig` first.
 //
 // Usage:
-//   augur dig <handle> [<handle> ...]      excavate public-artifact shadow(s)
-//   augur dig --file handles.json          dig every {github} in a JSON array
-//   augur dig <handle> --json              raw JSON (default: human summary)
+//   augur dig <handle>                         github-rooted dig (a single individual)
+//   augur dig --name "Maha Achour" [--hint "metamaterials physicist"]
+//   augur dig --name "X" --company 16235909    add UK Companies House officers
+//   augur dig --github <h> --name "X"          multi-root one person
+//   augur dig --file handles.json              dig every {github} in a JSON array
+//   (append --json for raw provenance-tagged facts; default is a human summary)
 //
-// Consent/legal: dig touches PUBLIC, logged-out endpoints only, within rate limits.
-// See AUGUR-DESIGN.md §2 (the consent + legal spine) before adding outbound verbs.
+// Consent/legal: dig touches PUBLIC, logged-out endpoints only. See AUGUR-DESIGN §2.
 import { readFileSync } from "node:fs";
 import { dig } from "../src/dig.mjs";
 
 const argv = process.argv.slice(2);
 const verb = argv[0];
-const flags = new Set(argv.filter((a) => a.startsWith("--")));
-const args = argv.slice(1).filter((a) => !a.startsWith("--"));
+function optVal(name) { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : null; }
+const has = (f) => argv.includes(f);
+const positional = argv.slice(1).filter((a, i, arr) => !a.startsWith("--") && !(i > 0 && arr[i - 1].startsWith("--")));
 
 function die(msg) { console.error(msg); process.exit(1); }
 
-async function cmdDig() {
-  let handles = args;
-  if (flags.has("--file")) {
-    const path = args[0] || die("--file needs a path");
-    const arr = JSON.parse(readFileSync(path, "utf8"));
-    handles = (Array.isArray(arr) ? arr : arr.people || []).map((x) => (typeof x === "string" ? x : x.github)).filter(Boolean);
+function summarize(r) {
+  if (!r.facts.length) { console.log(`✗ ${JSON.stringify(r.subject)} — nothing found (veins: ${r.veins.map((v) => v.name + ":" + v.note).join(", ")})`); return; }
+  const label = r.identifiers.names[0] || r.subject.github || r.subject.name || "?";
+  console.log(`● ${label}`);
+  if (r.identifiers.github_id) console.log(`   github_id: ${r.identifiers.github_id} (immortal)`);
+  if (r.identifiers.orcid) console.log(`   orcid:     ${r.identifiers.orcid}`);
+  if (r.identifiers.emails.length) console.log(`   email:     ${r.identifiers.emails.join(", ")}`);
+  const g = (p) => r.facts.filter((f) => f.predicate === p).map((f) => f.value);
+  for (const [p, lbl] of [["site", "site"], ["location", "loc"], ["company", "company"], ["affiliation", "affil"], ["scholarly_works", "works"], ["citations", "cited"], ["directorship", "director"], ["ssh_fp", "ssh_fp"], ["research_topic", "topics"], ["pgp_uid", "pgp"], ["linked_account", "linked"], ["company_officer", "officers"]]) {
+    const v = g(p); if (v.length) console.log(`   ${lbl.padEnd(9)} ${p === "research_topic" || p === "company_officer" ? v.slice(0, 5).join(" · ") : v.join(", ")}`);
   }
-  if (!handles.length) die("usage: augur dig <handle> [<handle> ...]  |  augur dig --file handles.json");
+  console.log(`   veins:     ${r.veins.map((v) => `${v.name}(${v.facts}${v.note ? " — " + v.note : ""})`).join(" | ")}`);
+}
+
+async function cmdDig() {
+  let subjects = [];
+  if (has("--file")) {
+    const arr = JSON.parse(readFileSync(optVal("--file"), "utf8"));
+    subjects = (Array.isArray(arr) ? arr : arr.people || []).map((x) => (typeof x === "string" ? { github: x } : { github: x.github })).filter((s) => s.github);
+  } else if (has("--name") || has("--github") || has("--email") || has("--company")) {
+    subjects = [{ github: optVal("--github"), name: optVal("--name"), email: optVal("--email"), hint: optVal("--hint"), companyNumber: optVal("--company") }];
+  } else if (positional.length) {
+    subjects = positional.map((h) => ({ github: h }));
+  } else {
+    die('usage: augur dig <handle>  |  augur dig --name "Full Name" [--hint "field"] [--company <ukCompanyNo>]');
+  }
 
   const out = [];
-  for (const h of handles) {
-    const r = await dig(h);
+  for (const s of subjects) {
+    const r = await dig(s);
     out.push(r);
-    if (!flags.has("--json")) {
-      if (r.error) { console.log(`✗ ${h}: ${r.error}`); continue; }
-      const f = (p) => r.facts.filter((x) => x.predicate === p).map((x) => x.value);
-      console.log(`● ${r.handle}  (id:${r.id})`);
-      if (f("name").length) console.log(`   name:   ${f("name")[0]}`);
-      if (f("email").length) console.log(`   email:  ${f("email")[0]}`);
-      if (f("site").length) console.log(`   site:   ${f("site")[0]}`);
-      if (f("location").length) console.log(`   loc:    ${f("location")[0]}`);
-      if (f("ssh_fp").length) console.log(`   ssh_fp: ${f("ssh_fp").join(", ")}`);
-      if (f("pgp_uid").length) console.log(`   pgp:    ${f("pgp_uid").join(" | ")}`);
-      if (f("linked_account").length) console.log(`   linked: ${f("linked_account").join(", ")}`);
-    }
+    if (!has("--json")) summarize(r);
   }
-  if (flags.has("--json")) console.log(JSON.stringify(handles.length === 1 ? out[0] : out, null, 2));
+  if (has("--json")) console.log(JSON.stringify(out.length === 1 ? out[0] : out, null, 2));
 }
 
 switch (verb) {
   case "dig": await cmdDig(); break;
-  case undefined:
-  case "--help":
-  case "help":
-    console.log("augur <verb>\n\n  dig <handle>   excavate a person's public-artifact shadow (first stone)\n\nBuild order (AUGUR-DESIGN §1): discover → dig → fuse → refute → place → weave");
+  case undefined: case "--help": case "help":
+    console.log("augur <verb>\n\n  dig <handle>            github-rooted excavation (a single individual)\n  dig --name \"X\" --hint \"field\"   name-rooted (scholarly + registry veins)\n  dig --name \"X\" --company <ukNo>  add UK Companies House officers\n\nVeins: github · openalex · companies_house  (roadmap: patents, keybase, npm, crt.sh, bluesky, ABR)\nBuild order (AUGUR-DESIGN §1): discover → dig → fuse → refute → place → weave");
     break;
   default: die(`unknown verb '${verb}'. try: augur dig <handle>`);
 }
