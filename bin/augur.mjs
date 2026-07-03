@@ -29,8 +29,8 @@ function summarize(r) {
   if (r.identifiers.orcid) console.log(`   orcid:     ${r.identifiers.orcid}`);
   if (r.identifiers.emails.length) console.log(`   email:     ${r.identifiers.emails.join(", ")}`);
   const g = (p) => r.facts.filter((f) => f.predicate === p).map((f) => f.value);
-  for (const [p, lbl] of [["site", "site"], ["location", "loc"], ["company", "company"], ["affiliation", "affil"], ["scholarly_works", "works"], ["citations", "cited"], ["directorship", "director"], ["ssh_fp", "ssh_fp"], ["research_topic", "topics"], ["pgp_uid", "pgp"], ["linked_account", "linked"], ["company_officer", "officers"]]) {
-    const v = g(p); if (v.length) console.log(`   ${lbl.padEnd(9)} ${p === "research_topic" || p === "company_officer" ? v.slice(0, 5).join(" · ") : v.join(", ")}`);
+  for (const [p, lbl] of [["site", "site"], ["location", "loc"], ["company", "company"], ["affiliation", "affil"], ["scholarly_works", "works"], ["citations", "cited"], ["patent_count", "patents"], ["patent_assignee", "assignees"], ["patent", "patent"], ["directorship", "director"], ["ssh_fp", "ssh_fp"], ["research_topic", "topics"], ["pgp_uid", "pgp"], ["linked_account", "linked"], ["company_officer", "officers"]]) {
+    const v = g(p); if (v.length) console.log(`   ${lbl.padEnd(9)} ${["research_topic", "company_officer", "patent", "patent_assignee"].includes(p) ? v.slice(0, 4).join(" · ") : v.join(", ")}`);
   }
   console.log(`   veins:     ${r.veins.map((v) => `${v.name}(${v.facts}${v.note ? " — " + v.note : ""})`).join(" | ")}`);
 }
@@ -40,8 +40,8 @@ async function cmdDig() {
   if (has("--file")) {
     const arr = JSON.parse(readFileSync(optVal("--file"), "utf8"));
     subjects = (Array.isArray(arr) ? arr : arr.people || []).map((x) => (typeof x === "string" ? { github: x } : { github: x.github })).filter((s) => s.github);
-  } else if (has("--name") || has("--github") || has("--email") || has("--company")) {
-    subjects = [{ github: optVal("--github"), name: optVal("--name"), email: optVal("--email"), hint: optVal("--hint"), companyNumber: optVal("--company") }];
+  } else if (has("--name") || has("--github") || has("--email") || has("--company") || has("--orcid")) {
+    subjects = [{ github: optVal("--github"), name: optVal("--name"), email: optVal("--email"), hint: optVal("--hint"), companyNumber: optVal("--company"), orcid: optVal("--orcid") }];
   } else if (positional.length) {
     subjects = positional.map((h) => ({ github: h }));
   } else {
