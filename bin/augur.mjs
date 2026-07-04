@@ -12,6 +12,8 @@
 // Consent/legal: dig touches PUBLIC, logged-out endpoints only. See AUGUR-DESIGN §2.
 import { readFileSync } from "node:fs";
 import { dig } from "../src/dig.mjs";
+import { study } from "../src/study.mjs";
+import { compose } from "../src/compose.mjs";
 
 const argv = process.argv.slice(2);
 const verb = argv[0];
@@ -57,8 +59,45 @@ async function cmdDig() {
   if (has("--json")) console.log(JSON.stringify(out.length === 1 ? out[0] : out, null, 2));
 }
 
+function summarizeStudy(r) {
+  const label = r.handle || r.subject?.github || "?";
+  if (!r.studyFacts.length) { console.log(`✗ study ${label} — ${r.note || "no semantic facts"}`); return; }
+  console.log(`◆ study ${label}  (${r.studyFacts.length} semantic facts from ${r.repoCount} repos)`);
+  const by = {};
+  for (const f of r.studyFacts) (by[f.predicate] ||= []).push(f);
+  for (const p of Object.keys(by)) {
+    console.log(`   ${p}:`);
+    for (const f of by[p]) console.log(`     · ${f.value}  (${(f.reliability).toFixed(2)} ${f.method})`);
+  }
+}
+
+async function cmdStudy() {
+  const handle = optVal("--github") || positional[0];
+  if (!handle) die('usage: augur study <handle>  (studies a resolved NODE\'s public GitHub work)');
+  const r = await study(handle);
+  if (has("--json")) console.log(JSON.stringify(r, null, 2));
+  else summarizeStudy(r);
+}
+
+async function cmdCompose() {
+  const target = optVal("--target") || positional[0];
+  const us = optVal("--us");
+  if (!target || !us) die('usage: augur compose <target-handle> --us <your-handle> [--broker "Name"]');
+  const r = await compose(target, us, { broker: optVal("--broker") });
+  if (has("--json")) { console.log(JSON.stringify(r, null, 2)); return; }
+  console.log(`\n◆ compose  ${target}  ✕  ${us}`);
+  if (r.rhyme) console.log(`\n  RHYME: ${r.rhyme}\n`);
+  console.log("  ── DRAFT (never sent) ─────────────────────────────");
+  console.log(r.draft.split("\n").map((l) => "  " + l).join("\n"));
+  console.log("  ───────────────────────────────────────────────────");
+  if (r.cut?.length) console.log(`\n  ⚠ anti-creepiness gate cut ${r.cut.length} unsourced claim(s): ${r.cut.join(" | ")}`);
+  console.log(`\n  receipts: ${r.receipts?.length || 0}   · draft only — review, then send by hand.`);
+}
+
 switch (verb) {
   case "dig": await cmdDig(); break;
+  case "study": await cmdStudy(); break;
+  case "compose": await cmdCompose(); break;
   case undefined: case "--help": case "help":
     console.log("augur <verb>\n\n  dig <handle>            github-rooted excavation (a single individual)\n  dig --name \"X\" --hint \"field\"   name-rooted (scholarly + registry veins)\n  dig --name \"X\" --company <ukNo>  add UK Companies House officers\n\nVeins: github · openalex · companies_house  (roadmap: patents, keybase, npm, crt.sh, bluesky, ABR)\nBuild order (AUGUR-DESIGN §1): discover → dig → fuse → refute → place → weave");
     break;
