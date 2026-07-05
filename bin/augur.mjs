@@ -7,11 +7,14 @@
 //   augur dig --name "X" --company 16235909    add UK Companies House officers
 //   augur dig --github <h> --name "X"          multi-root one person
 //   augur dig --file handles.json              dig every {github} in a JSON array
+//   augur resolve --name "X" [--city Y --country AU]   name → GitHub handle (the pre-dig step)
+//   augur resolve --file people.json [--no-search]     resolve every {name,city,country}
 //   (append --json for raw provenance-tagged facts; default is a human summary)
 //
 // Consent/legal: dig touches PUBLIC, logged-out endpoints only. See AUGUR-DESIGN §2.
 import { readFileSync } from "node:fs";
 import { dig } from "../src/dig.mjs";
+import { resolve } from "../src/resolve.mjs";
 import { study } from "../src/study.mjs";
 import { compose } from "../src/compose.mjs";
 
@@ -59,6 +62,35 @@ async function cmdDig() {
   if (has("--json")) console.log(JSON.stringify(out.length === 1 ? out[0] : out, null, 2));
 }
 
+function summarizeResolve(r) {
+  const mark = { high: "●", med: "◐", low: "○", none: "✗" }[r.confidence];
+  if (r.confidence === "none") { console.log(`✗ ${r.name} — no handle found (${r.candidates.length} guesses tried)`); return; }
+  const loc = r.ghLocation ? ` @ ${r.ghLocation}` : "";
+  console.log(`${mark} ${r.name}  →  ${r.github ? "@" + r.github : "(unresolved)"}  [${r.confidence}]${loc}  ${r.method || ""}`);
+  if (r.confidence === "low" || r.candidates.length > 1) {
+    for (const c of r.candidates.slice(0, 4)) console.log(`     · @${c.login} "${c.ghName}" ${c.match}${c.loc ? " +loc" : ""} (${c.method})`);
+  }
+}
+
+async function cmdResolve() {
+  let people = [];
+  if (has("--file")) {
+    const arr = JSON.parse(readFileSync(optVal("--file"), "utf8"));
+    people = (Array.isArray(arr) ? arr : arr.people || []).map((x) => (typeof x === "string" ? { name: x } : { name: x.name, city: x.city, country: x.country })).filter((p) => p.name);
+  } else if (has("--name")) {
+    people = [{ name: optVal("--name"), city: optVal("--city"), country: optVal("--country") }];
+  } else {
+    die('usage: augur resolve --name "Full Name" [--city X] [--country AU]  |  augur resolve --file people.json  (append --no-search for handle-guess only)');
+  }
+  const out = [];
+  for (const p of people) {
+    const r = await resolve(p, { search: !has("--no-search") });
+    out.push(r);
+    if (!has("--json")) summarizeResolve(r);
+  }
+  if (has("--json")) console.log(JSON.stringify(out.length === 1 ? out[0] : out, null, 2));
+}
+
 function summarizeStudy(r) {
   const label = r.handle || r.subject?.github || "?";
   if (!r.studyFacts.length) { console.log(`✗ study ${label} — ${r.note || "no semantic facts"}`); return; }
@@ -96,10 +128,11 @@ async function cmdCompose() {
 
 switch (verb) {
   case "dig": await cmdDig(); break;
+  case "resolve": await cmdResolve(); break;
   case "study": await cmdStudy(); break;
   case "compose": await cmdCompose(); break;
   case undefined: case "--help": case "help":
-    console.log("augur <verb>\n\n  dig <handle>            github-rooted excavation (a single individual)\n  dig --name \"X\" --hint \"field\"   name-rooted (scholarly + registry veins)\n  dig --name \"X\" --company <ukNo>  add UK Companies House officers\n\nVeins: github · openalex · companies_house  (roadmap: patents, keybase, npm, crt.sh, bluesky, ABR)\nBuild order (AUGUR-DESIGN §1): discover → dig → fuse → refute → place → weave");
+    console.log("augur <verb>\n\n  resolve --name \"X\" [--city Y --country AU]   name → GitHub handle (pre-dig)\n  dig <handle>            github-rooted excavation (a single individual)\n  dig --name \"X\" --hint \"field\"   name-rooted (scholarly + registry veins)\n  dig --name \"X\" --company <ukNo>  add UK Companies House officers\n\nVeins: github · openalex · companies_house  (roadmap: patents, keybase, npm, crt.sh, bluesky, ABR)\nBuild order (AUGUR-DESIGN §1): discover → resolve → dig → fuse → refute → place → weave");
     break;
   default: die(`unknown verb '${verb}'. try: augur dig <handle>`);
 }
