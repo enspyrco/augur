@@ -1,0 +1,34 @@
+{
+  "id": "imagineering",
+  "graph": "imagineering-community",
+  "globalVar": "IMAGINEERING_COMMUNITY",
+  "linkedTo": { "graph": "big-community-graph", "via": ["nick", "robin"] },
+
+  "geoTags": {
+    "au": "australia", "in": "india", "nz": "new-zealand",
+    "cz": "czech", "es": "spain", "jp": "japan", "ng": "nigeria"
+  },
+  "lumaTag": "tech-world",
+
+  "publicAllowlist": ["name", "role", "location", "github", "githubUrl", "tags", "kind", "node"],
+
+  "brand": {
+    "docTitle": "Imagineering · Community Graph",
+    "kicker": "Imagineering",
+    "h1": "Community Graph",
+    "sub": "The people gathering around Imagineering — harvested from Meetup &amp; Luma, each linked to their GitHub. A <b>separate</b> graph from Nick's personal community graph, sutured to it through two bridge people.",
+    "bridgeHeading": "Bridges to the big graph",
+    "membersHeading": "Members",
+    "bridgeBanner": "This graph links to the <b>big community graph</b> only through <b id=\"bridge-names\">its bridge people</b> — the two who live in both. Everyone else here is native to Imagineering.",
+    "footerSibling": { "label": "raggedr.github.io/imagineering-dashboard", "url": "https://raggedr.github.io/imagineering-dashboard" },
+    "publicSub": "A public map of the Imagineering community."
+  },
+
+  "memory": {
+    "dir": "~/.claude/projects/-Users-nick-git-orgs-imagineering-community/memory",
+    "rosterFile": "MEMORY.roster.md",
+    "title": "Imagineering Community"
+  },
+
+  "publishRepo": "nickmeinhold/imagineering-community"
+}

@@ -1,0 +1,380 @@
+{
+  "_comment": "Curated enrichment keyed by normalized name (lowercase, trimmed, single-spaced). Only fields we're confident about. `aliases` merges alternate names (e.g. Robin's Meetup handle 'Rob Bob') into one person. GitHub handles from the big-graph melb-tech crawl are treated as verified.",
+  "overrides": [
+    {
+      "name": "Nick Meinhold",
+      "kind": "bridge",
+      "github": "nickmeinhold",
+      "location": "Melbourne, AU",
+      "role": "Co-founder / Imagineering",
+      "tags": [
+        "founder",
+        "bridge"
+      ],
+      "memoryNode": "bridge_nick.md",
+      "note": "Co-runs Imagineering. Bridge to the big community graph."
+    },
+    {
+      "name": "Robin Langer",
+      "kind": "bridge",
+      "aliases": [
+        "Rob Bob"
+      ],
+      "github": "RaggedR",
+      "location": "Melbourne, AU",
+      "role": "Co-founder / Imagineering",
+      "tags": [
+        "founder",
+        "bridge",
+        "mathematician"
+      ],
+      "channels": {
+        "signal": "+61413710989",
+        "telegram": "@RobinBobinTobin"
+      },
+      "memoryNode": "bridge_robin.md",
+      "note": "Co-runs Imagineering; maintains the sibling dashboard at raggedr.github.io/imagineering-dashboard. Bridge to the big community graph."
+    },
+    {
+      "name": "Chetan Ashtivkar",
+      "github": "ChetanAshtivkar",
+      "location": "Mumbai, IN",
+      "role": "Android / Kotlin developer",
+      "tags": [
+        "mobile",
+        "kotlin",
+        "android",
+        "mumbai",
+        "india",
+        "civic-tech"
+      ],
+      "memoryNode": "person_chetan_ashtivkar.md",
+      "note": "Android/Kotlin dev; 40 repos since 2015. Civic streak — built DogRescueMumbaiHelplines. First member captured."
+    },
+    {
+      "name": "Om Subrato Dey",
+      "github": "XOSDX",
+      "location": "Bengaluru, IN",
+      "role": "AI researcher / student",
+      "tags": [
+        "ai",
+        "researcher",
+        "bengaluru",
+        "india"
+      ],
+      "channels": {
+        "email": "ommsubrato.dey@gmail.com"
+      },
+      "memoryNode": "person_om_subrato_dey.md",
+      "note": "AI Researcher @ VIT Chennai; Industry 4.0 NUS cohort winner. Second India node. (Empty dupe handle OMSUBRATODEY — XOSDX canonical.)"
+    },
+    {
+      "name": "Abhishek Godhani",
+      "github": "abhishekgodhani",
+      "tags": [
+        "india"
+      ],
+      "channels": {
+        "email": "amg@bhakharvadi.addy.io"
+      },
+      "memoryNode": "person_abhishek_godhani.md",
+      "note": "Luma MiniSprints guest (Mar 28, Going). GitHub exact-match."
+    },
+    {
+      "name": "Jie Zhou",
+      "channels": {
+        "email": "jie.z.zhou@gmail.com"
+      },
+      "memoryNode": "person_jie_zhou.md",
+      "note": "Luma MiniSprints guest (Mar 28, Going). GitHub not yet resolved (name search ambiguous)."
+    },
+    {
+      "name": "Al Sampayo",
+      "channels": {
+        "email": "aisampayo12@gmail.com"
+      },
+      "memoryNode": "person_al_sampayo.md",
+      "note": "Luma MiniSprints guest (Apr 25, Going). GitHub not yet resolved."
+    },
+    {
+      "name": "Jane Korneyko",
+      "channels": {
+        "email": "jane.korneyko@gmail.com"
+      },
+      "memoryNode": "person_jane_korneyko.md",
+      "note": "Luma MiniSprints guest (Apr 25, Going). GitHub not yet resolved."
+    },
+    {
+      "name": "Mike Bailey",
+      "github": "mbailey",
+      "location": "Melbourne, AU",
+      "role": "OSS / DevOps builder",
+      "tags": [
+        "oss",
+        "devops",
+        "voice",
+        "melbourne",
+        "also-in-big-graph"
+      ],
+      "channels": {
+        "email": "mike@voicemode.dev"
+      },
+      "crossRef": "big-community-graph:user_collaborator_mike_bailey.md",
+      "memoryNode": "person_mike_bailey.md",
+      "note": "voicemode (1.2k★) + bash-my-aws. Cross-ref to big graph."
+    },
+    {
+      "name": "Sophie A",
+      "github": "starship-droid",
+      "location": "Melbourne, AU",
+      "role": "QA / builder",
+      "tags": [
+        "qa",
+        "linux",
+        "melbourne",
+        "also-in-big-graph"
+      ],
+      "channels": {
+        "email": "sophie@talkingsites.org"
+      },
+      "crossRef": "big-community-graph:user_collaborator_sophie.md",
+      "memoryNode": "person_sophie_a.md",
+      "note": "Linux Victoria + Electron Workshop; QA on the SNES emulator. Cross-ref to big graph."
+    },
+    {
+      "name": "Paul Lin",
+      "location": "Melbourne, AU",
+      "role": "Doctor + mathematician",
+      "tags": [
+        "maths",
+        "melbourne",
+        "also-in-big-graph"
+      ],
+      "channels": {
+        "email": "paullin618@gmail.com",
+        "signal": "+61468904866"
+      },
+      "crossRef": "big-community-graph:user_collaborator_paul_lin.md",
+      "memoryNode": "person_paul_lin.md",
+      "note": "Doctor + mathematician; Claude+maths work with Robin. Cross-ref to big graph."
+    },
+    {
+      "name": "Angie Simmons",
+      "github": "anjsimmo",
+      "location": "Melbourne, AU",
+      "tags": [
+        "ai",
+        "melbourne",
+        "also-in-big-graph"
+      ],
+      "crossRef": "big-community-graph:user_collaborator_angie.md",
+      "note": "AMR/MLAI co-organiser; built the 'roo' agent + Hashtag AI. In big graph."
+    },
+    {
+      "name": "Deanna Spinks",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne",
+        "also-in-big-graph"
+      ],
+      "crossRef": "big-community-graph:user_collaborator_deeana.md",
+      "note": "AMR co-organiser. In big graph. GitHub resolved by name+location (2026-07-02).",
+      "github": "deannaspinks"
+    },
+    {
+      "name": "Andy Gelme",
+      "location": "Melbourne, AU",
+      "tags": [
+        "maker",
+        "robotics",
+        "melbourne",
+        "also-in-big-graph"
+      ],
+      "crossRef": "big-community-graph:user_collaborator_andy_g.md",
+      "note": "Runs AMR (AI/ML/Robots); old-school hacker + community-builder. In big graph. GitHub resolved by name+location (2026-07-02).",
+      "github": "geekscape"
+    },
+    {
+      "name": "Kausthub Krishnamurthy",
+      "github": "KausthubK",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne",
+        "also-in-big-graph"
+      ],
+      "note": "Imagineering roster (melb-tech crawl)."
+    },
+    {
+      "name": "Jacob Rothfield",
+      "github": "jroth1111",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne",
+        "also-in-big-graph"
+      ],
+      "note": "Imagineering roster (melb-tech crawl)."
+    },
+    {
+      "name": "Javier Candeira",
+      "github": "candeira",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne",
+        "also-in-big-graph"
+      ],
+      "crossRef": "big-community-graph:user_collaborator_javier_candeira.md",
+      "note": "Friend; owns the OCI Melbourne ARM tenancy. In big graph."
+    },
+    {
+      "name": "Alexar",
+      "location": "Bendigo, AU",
+      "tags": [
+        "bendigo",
+        "also-in-big-graph"
+      ],
+      "crossRef": "big-community-graph:user_collaborator_alexar.md",
+      "note": "Alexar Pendashteh — BIT Centers concept owner. In big graph."
+    },
+    {
+      "name": "Pete Jarvis",
+      "github": "pctjzer",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by name+location match (2026-07-02); verify at events."
+    },
+    {
+      "name": "Rod Bond",
+      "github": "rodbond7",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by name+location match (2026-07-02); verify at events."
+    },
+    {
+      "name": "Karthik Murali",
+      "github": "KarthikMurali1",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by name+location match (2026-07-02); verify at events."
+    },
+    {
+      "name": "Love Huria",
+      "github": "lhuria94",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by name+location match (2026-07-02); verify at events."
+    },
+    {
+      "name": "Hans Dushanthakumar",
+      "github": "hdushan",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by name+location match (2026-07-02); verify at events."
+    },
+    {
+      "name": "Teddy Aryono",
+      "github": "teddyaryono",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by name+location match (2026-07-02); verify at events."
+    },
+    {
+      "name": "Daniel Vianna",
+      "github": "pasunboneleve",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by name+location match (2026-07-02); verify at events."
+    },
+    {
+      "name": "Tanishka Sahni",
+      "github": "tanishkasahni",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by name+location match (2026-07-02); verify at events."
+    },
+    {
+      "name": "Louis Nyffenegger",
+      "github": "snyff",
+      "location": "Melbourne, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by name+location match (2026-07-02); verify at events."
+    },
+    {
+      "name": "Dianna Yanuaresta",
+      "github": "diannayanuaresta",
+      "location": "Adelaide, AU",
+      "tags": [
+        "adelaide"
+      ],
+      "note": "GitHub resolved by handle+exact-name (unique name, 1 GH namesake); 2026-07-02. Location unconfirmed."
+    },
+    {
+      "name": "Ameya Agashe",
+      "github": "ameyaagashe",
+      "location": "Hawthorn, AU",
+      "tags": [
+        "melbourne"
+      ],
+      "note": "GitHub resolved by handle+exact-name (rare name, 2 GH namesakes); 2026-07-02. Location unconfirmed."
+    },
+    {
+      "name": "Connor M Hood",
+      "github": "SocialAcolyte",
+      "tags": [
+        "lead",
+        "added-by-nick"
+      ],
+      "channels": {
+        "email": "42connor@gmail.com",
+        "emailAlt": "SocialAcolyte420@gmail.com",
+        "twitter": "SocialAcolyte",
+        "linkedin": "connor m hood"
+      },
+      "memoryNode": "person_connor_hood.md",
+      "note": "Added by Nick 2026-07-02. GH SocialAcolyte VERIFIED (bio 'Hey I am social', X @SocialAcolyte, 6 repos). Mutual GitHub follow with Anushka Jogalekar (each follows the other) - the pair arrived together. GH-orbit lead: follows geopavlakos (George Pavlakos, 3D human-mesh-recovery researcher - relevant to embodied-dreamfinder)."
+    },
+    {
+      "name": "Anushka Jogalekar",
+      "github": "0xANUSHKA",
+      "tags": [
+        "lead",
+        "added-by-nick"
+      ],
+      "channels": {
+        "email": "jogalekar.anushka@gmail.com",
+        "twitter": "wavelettes",
+        "linkedin": "anushkajogalekar"
+      },
+      "memoryNode": "person_anushka_jogalekar.md",
+      "note": "Added by Nick 2026-07-02. GH 0xANUSHKA VERIFIED (GH name literally 'Anushka Jogalekar', blog nush.vercel.app, 11 repos). Mutual GitHub follow with Connor (SocialAcolyte). X @wavelettes, LinkedIn anushkajogalekar."
+    },
+    {
+      "name": "Bhavya Reddy",
+      "github": "reddy-bhavya",
+      "location": "Pune, IN",
+      "tags": [
+        "india",
+        "student",
+        "ai"
+      ],
+      "note": "GitHub resolved by handle+exact-name; bio (\"pursuing master's in information…\") corroborates India/student profile. 2026-07-03. City-level unconfirmed."
+    }
+  ]
+}

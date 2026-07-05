@@ -1,0 +1,24 @@
+{
+  "calendar": "https://luma.com/imagineering",
+  "series": "Tech World",
+  "seriesNote": "The 'Imagine → 2h MiniSprints → Surprise and Delight' events on the Imagineering Luma calendar ARE the Tech World events (confirmed by Nick 2026-07-01).",
+  "updated": "2026-07-01",
+  "events": [
+    { "id": "evt-JtzOvAmv0u4Xf01", "title": "Tech World — Imagine → 2h MiniSprints", "date": "2026-03-10", "guestCount": 1 },
+    { "id": "evt-Ao7cGDMn35gGbR4", "title": "Tech World — Imagine → 2h MiniSprints", "date": "2026-03-28", "guestCount": 4 },
+    { "id": "evt-Bte8w67h5oI79IO", "title": "Tech World — Imagine → 2h MiniSprints", "date": "2026-04-25", "guestCount": 4 },
+    { "id": "evt-FBOzT6VGi2Dreaq", "title": "Tech World — Imagine → 2h MiniSprints", "date": "2026-05-23", "guestCount": 0 }
+  ],
+  "guests": [
+    { "name": "Robin Langer", "email": "langer.robin@gmail.com", "event": "evt-JtzOvAmv0u4Xf01", "rsvp": "going" },
+    { "name": "Paul Lin", "email": "paullin618@gmail.com", "event": "evt-Ao7cGDMn35gGbR4", "rsvp": "going" },
+    { "name": "Jie Zhou", "email": "jie.z.zhou@gmail.com", "event": "evt-Ao7cGDMn35gGbR4", "rsvp": "going" },
+    { "name": "Mike Bailey", "email": "mike@voicemode.dev", "event": "evt-Ao7cGDMn35gGbR4", "rsvp": "going" },
+    { "name": "Abhishek Godhani", "email": "amg@bhakharvadi.addy.io", "event": "evt-Ao7cGDMn35gGbR4", "rsvp": "going" },
+    { "name": "Al Sampayo", "email": "aisampayo12@gmail.com", "event": "evt-Bte8w67h5oI79IO", "rsvp": "going" },
+    { "name": "Om Subrato Dey", "email": "ommsubrato.dey@gmail.com", "event": "evt-Bte8w67h5oI79IO", "rsvp": "going" },
+    { "name": "Mike Bailey", "email": "mike@voicemode.dev", "event": "evt-Bte8w67h5oI79IO", "rsvp": "not_going" },
+    { "name": "Sophie A", "email": "sophie@talkingsites.org", "event": "evt-Bte8w67h5oI79IO", "rsvp": "going" },
+    { "name": "Jane Korneyko", "email": "jane.korneyko@gmail.com", "event": "evt-Bte8w67h5oI79IO", "rsvp": "going" }
+  ]
+}

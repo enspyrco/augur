@@ -1,0 +1,1433 @@
+{
+  "group": "imagineeering-ai-claude-code",
+  "total": 178,
+  "harvested": 178,
+  "updated": "2026-07-01",
+  "members": [
+    {
+      "name": "Nick Meinhold",
+      "meetupUrl": "https://www.meetup.com/members/68370402/",
+      "meetupId": "68370402",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": "nickmeinhold"
+    },
+    {
+      "name": "Angie Simmons",
+      "meetupUrl": "https://www.meetup.com/members/206297130/",
+      "meetupId": "206297130",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Ameya Agashe",
+      "meetupUrl": "https://www.meetup.com/members/355600542/",
+      "meetupId": "355600542",
+      "city": "Hawthorn",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Martin Kemka",
+      "meetupUrl": "https://www.meetup.com/members/4892375/",
+      "meetupId": "4892375",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "jasper",
+      "meetupUrl": "https://www.meetup.com/members/474273464/",
+      "meetupId": "474273464",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "m06.singh10",
+      "meetupUrl": "https://www.meetup.com/members/477916395/",
+      "meetupId": "477916395",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Ranajit Koley",
+      "meetupUrl": "https://www.meetup.com/members/261126591/",
+      "meetupId": "261126591",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "RYAN Elamsy",
+      "meetupUrl": "https://www.meetup.com/members/287532349/",
+      "meetupId": "287532349",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "oscaralateras70",
+      "meetupUrl": "https://www.meetup.com/members/478336059/",
+      "meetupId": "478336059",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Deanna Spinks",
+      "meetupUrl": "https://www.meetup.com/members/325445896/",
+      "meetupId": "325445896",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Danial Butt",
+      "meetupUrl": "https://www.meetup.com/members/422732861/",
+      "meetupId": "422732861",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Swajay",
+      "meetupUrl": "https://www.meetup.com/members/471386686/",
+      "meetupId": "471386686",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Pete Jarvis",
+      "meetupUrl": "https://www.meetup.com/members/305723890/",
+      "meetupId": "305723890",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Daniel Yuan",
+      "meetupUrl": "https://www.meetup.com/members/473759562/",
+      "meetupId": "473759562",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Rob Bob",
+      "meetupUrl": "https://www.meetup.com/members/395513315/",
+      "meetupId": "395513315",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Abhijeet Kumar",
+      "meetupUrl": "https://www.meetup.com/members/413294329/",
+      "meetupId": "413294329",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Anisha",
+      "meetupUrl": "https://www.meetup.com/members/54652492/",
+      "meetupId": "54652492",
+      "city": "Northcote",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Rod Bond",
+      "meetupUrl": "https://www.meetup.com/members/35998102/",
+      "meetupId": "35998102",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Andy Gelme",
+      "meetupUrl": "https://www.meetup.com/members/8270702/",
+      "meetupId": "8270702",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": "andyg"
+    },
+    {
+      "name": "Joël",
+      "meetupUrl": "https://www.meetup.com/members/425043175/",
+      "meetupId": "425043175",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "blackdebian01",
+      "meetupUrl": "https://www.meetup.com/members/478454197/",
+      "meetupId": "478454197",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Annie Kay",
+      "meetupUrl": "https://www.meetup.com/members/356390097/",
+      "meetupId": "356390097",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Kausthub Krishnamurthy",
+      "meetupUrl": "https://www.meetup.com/members/242542257/",
+      "meetupId": "242542257",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Tu-Trung-Richie Lam",
+      "meetupUrl": "https://www.meetup.com/members/419236013/",
+      "meetupId": "419236013",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Jacinta",
+      "meetupUrl": "https://www.meetup.com/members/393930279/",
+      "meetupId": "393930279",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Debora Lipson",
+      "meetupUrl": "https://www.meetup.com/members/404465034/",
+      "meetupId": "404465034",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Jacob Rothfield",
+      "meetupUrl": "https://www.meetup.com/members/68064812/",
+      "meetupId": "68064812",
+      "city": "Richmond-Windsor",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Karthik Murali",
+      "meetupUrl": "https://www.meetup.com/members/333847194/",
+      "meetupId": "333847194",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Paul Lin",
+      "meetupUrl": "https://www.meetup.com/members/478542828/",
+      "meetupId": "478542828",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Love Huria",
+      "meetupUrl": "https://www.meetup.com/members/377651569/",
+      "meetupId": "377651569",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Alex",
+      "meetupUrl": "https://www.meetup.com/members/119949852/",
+      "meetupId": "119949852",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Alexar",
+      "meetupUrl": "https://www.meetup.com/members/128711542/",
+      "meetupId": "128711542",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": "alexar"
+    },
+    {
+      "name": "Robyn",
+      "meetupUrl": "https://www.meetup.com/members/196596686/",
+      "meetupId": "196596686",
+      "city": "Brisbane",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Om Subrato Dey",
+      "meetupUrl": "https://www.meetup.com/members/468916362/",
+      "meetupId": "468916362",
+      "city": "Bangalore",
+      "country": "IN",
+      "meetupUsername": null
+    },
+    {
+      "name": "James Gardner",
+      "meetupUrl": "https://www.meetup.com/members/331651432/",
+      "meetupId": "331651432",
+      "city": "Mandurah",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "ayushbhusal2004",
+      "meetupUrl": "https://www.meetup.com/members/479033695/",
+      "meetupId": "479033695",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Michael Ibrahim",
+      "meetupUrl": "https://www.meetup.com/members/295035174/",
+      "meetupId": "295035174",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "lixia song",
+      "meetupUrl": "https://www.meetup.com/members/212506332/",
+      "meetupId": "212506332",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Hans Dushanthakumar",
+      "meetupUrl": "https://www.meetup.com/members/230834704/",
+      "meetupId": "230834704",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Joshua Harry",
+      "meetupUrl": "https://www.meetup.com/members/342833931/",
+      "meetupId": "342833931",
+      "city": "Perth",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Roman",
+      "meetupUrl": "https://www.meetup.com/members/304203107/",
+      "meetupId": "304203107",
+      "city": "Prague",
+      "country": "CZ",
+      "meetupUsername": null
+    },
+    {
+      "name": "Scrimbletons",
+      "meetupUrl": "https://www.meetup.com/members/457764198/",
+      "meetupId": "457764198",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Wade Morgan",
+      "meetupUrl": "https://www.meetup.com/members/181574542/",
+      "meetupId": "181574542",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Satyajit",
+      "meetupUrl": "https://www.meetup.com/members/397192681/",
+      "meetupId": "397192681",
+      "city": "Adelaide",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Juan du Toit",
+      "meetupUrl": "https://www.meetup.com/members/479398587/",
+      "meetupId": "479398587",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Noel",
+      "meetupUrl": "https://www.meetup.com/members/479429996/",
+      "meetupId": "479429996",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Celeste Kabalo Chitundu",
+      "meetupUrl": "https://www.meetup.com/members/265360565/",
+      "meetupId": "265360565",
+      "city": "Sydney",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "simjchahal13",
+      "meetupUrl": "https://www.meetup.com/members/477401645/",
+      "meetupId": "477401645",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Kris",
+      "meetupUrl": "https://www.meetup.com/members/28204992/",
+      "meetupId": "28204992",
+      "city": "Sydney",
+      "country": "AU",
+      "meetupUsername": "krishelakkara"
+    },
+    {
+      "name": "A. Deng",
+      "meetupUrl": "https://www.meetup.com/members/479529383/",
+      "meetupId": "479529383",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Jie",
+      "meetupUrl": "https://www.meetup.com/members/3665815/",
+      "meetupId": "3665815",
+      "city": "Valencia",
+      "country": "ES",
+      "meetupUsername": null
+    },
+    {
+      "name": "Simon",
+      "meetupUrl": "https://www.meetup.com/members/24991922/",
+      "meetupId": "24991922",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Isaah",
+      "meetupUrl": "https://www.meetup.com/members/191836930/",
+      "meetupId": "191836930",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Nik K",
+      "meetupUrl": "https://www.meetup.com/members/138944712/",
+      "meetupId": "138944712",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Oskar Kufel",
+      "meetupUrl": "https://www.meetup.com/members/300225356/",
+      "meetupId": "300225356",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Javier Candeira",
+      "meetupUrl": "https://www.meetup.com/members/26078042/",
+      "meetupId": "26078042",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Roshan",
+      "meetupUrl": "https://www.meetup.com/members/475164844/",
+      "meetupId": "475164844",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "clarecotter",
+      "meetupUrl": "https://www.meetup.com/members/470771601/",
+      "meetupId": "470771601",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Dino",
+      "meetupUrl": "https://www.meetup.com/members/336752270/",
+      "meetupId": "336752270",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Dilip Jacob",
+      "meetupUrl": "https://www.meetup.com/members/149245602/",
+      "meetupId": "149245602",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Chirag",
+      "meetupUrl": "https://www.meetup.com/members/355941337/",
+      "meetupId": "355941337",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Anthea Yang",
+      "meetupUrl": "https://www.meetup.com/members/214724951/",
+      "meetupId": "214724951",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Laura La Micela",
+      "meetupUrl": "https://www.meetup.com/members/324179823/",
+      "meetupId": "324179823",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Teddy Aryono",
+      "meetupUrl": "https://www.meetup.com/members/365668716/",
+      "meetupId": "365668716",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Mash CT",
+      "meetupUrl": "https://www.meetup.com/members/478534694/",
+      "meetupId": "478534694",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Geoff Burns",
+      "meetupUrl": "https://www.meetup.com/members/264269417/",
+      "meetupId": "264269417",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Ryu",
+      "meetupUrl": "https://www.meetup.com/members/471229250/",
+      "meetupId": "471229250",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "AB",
+      "meetupUrl": "https://www.meetup.com/members/479768175/",
+      "meetupId": "479768175",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "J",
+      "meetupUrl": "https://www.meetup.com/members/321287261/",
+      "meetupId": "321287261",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Janis",
+      "meetupUrl": "https://www.meetup.com/members/365510849/",
+      "meetupId": "365510849",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Faisal",
+      "meetupUrl": "https://www.meetup.com/members/170888082/",
+      "meetupId": "170888082",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Seray",
+      "meetupUrl": "https://www.meetup.com/members/480186281/",
+      "meetupId": "480186281",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Kelvin",
+      "meetupUrl": "https://www.meetup.com/members/480298198/",
+      "meetupId": "480298198",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Bastab C",
+      "meetupUrl": "https://www.meetup.com/members/40807932/",
+      "meetupId": "40807932",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Chloe",
+      "meetupUrl": "https://www.meetup.com/members/480302859/",
+      "meetupId": "480302859",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "erik petersen",
+      "meetupUrl": "https://www.meetup.com/members/2476409/",
+      "meetupId": "2476409",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "ashwini",
+      "meetupUrl": "https://www.meetup.com/members/480349688/",
+      "meetupId": "480349688",
+      "city": "Sydney",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Del K",
+      "meetupUrl": "https://www.meetup.com/members/399555587/",
+      "meetupId": "399555587",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "V Sidharth",
+      "meetupUrl": "https://www.meetup.com/members/249026338/",
+      "meetupId": "249026338",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "John Pun",
+      "meetupUrl": "https://www.meetup.com/members/480458853/",
+      "meetupId": "480458853",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Sampath Maduranga",
+      "meetupUrl": "https://www.meetup.com/members/480483476/",
+      "meetupId": "480483476",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "harrax.ai",
+      "meetupUrl": "https://www.meetup.com/members/480492305/",
+      "meetupId": "480492305",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Daniel Vianna",
+      "meetupUrl": "https://www.meetup.com/members/49654522/",
+      "meetupId": "49654522",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Angela H",
+      "meetupUrl": "https://www.meetup.com/members/86996392/",
+      "meetupId": "86996392",
+      "city": "Perth",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Mohamed Rabik",
+      "meetupUrl": "https://www.meetup.com/members/476536187/",
+      "meetupId": "476536187",
+      "city": "Sydney",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Laura Shaw",
+      "meetupUrl": "https://www.meetup.com/members/469637428/",
+      "meetupId": "469637428",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Nadil Sundarapperuma",
+      "meetupUrl": "https://www.meetup.com/members/389698705/",
+      "meetupId": "389698705",
+      "city": "Adelaide",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Kartik Tripathi",
+      "meetupUrl": "https://www.meetup.com/members/480576605/",
+      "meetupId": "480576605",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Dianna Yanuaresta",
+      "meetupUrl": "https://www.meetup.com/members/420390474/",
+      "meetupId": "420390474",
+      "city": "Adelaide",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "zhanggenle565",
+      "meetupUrl": "https://www.meetup.com/members/470651303/",
+      "meetupId": "470651303",
+      "city": "Tokyo",
+      "country": "JP",
+      "meetupUsername": null
+    },
+    {
+      "name": "Sophia Zhang",
+      "meetupUrl": "https://www.meetup.com/members/309671124/",
+      "meetupId": "309671124",
+      "city": "Perth",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "BruceLi",
+      "meetupUrl": "https://www.meetup.com/members/479944768/",
+      "meetupId": "479944768",
+      "city": "Auckland",
+      "country": "NZ",
+      "meetupUsername": null
+    },
+    {
+      "name": "vivek.chereddy914",
+      "meetupUrl": "https://www.meetup.com/members/480510740/",
+      "meetupId": "480510740",
+      "city": "Geelong",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Tanishka Sahni",
+      "meetupUrl": "https://www.meetup.com/members/480674205/",
+      "meetupId": "480674205",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Wayne",
+      "meetupUrl": "https://www.meetup.com/members/209237899/",
+      "meetupId": "209237899",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Louis Nyffenegger",
+      "meetupUrl": "https://www.meetup.com/members/182617418/",
+      "meetupId": "182617418",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Kiran Lalwani",
+      "meetupUrl": "https://www.meetup.com/members/263263817/",
+      "meetupId": "263263817",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Bhavya Reddy",
+      "meetupUrl": "https://www.meetup.com/members/260771268/",
+      "meetupId": "260771268",
+      "city": "Pune",
+      "country": "IN",
+      "meetupUsername": null
+    },
+    {
+      "name": "Loch",
+      "meetupUrl": "https://www.meetup.com/members/240644585/",
+      "meetupId": "240644585",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Midhun",
+      "meetupUrl": "https://www.meetup.com/members/474386590/",
+      "meetupId": "474386590",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "rajnimulchandani",
+      "meetupUrl": "https://www.meetup.com/members/455718082/",
+      "meetupId": "455718082",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Matthew",
+      "meetupUrl": "https://www.meetup.com/members/105955632/",
+      "meetupId": "105955632",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Junie Lim",
+      "meetupUrl": "https://www.meetup.com/members/473305058/",
+      "meetupId": "473305058",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Nancy Chenxi Zhong",
+      "meetupUrl": "https://www.meetup.com/members/225982096/",
+      "meetupId": "225982096",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Reza",
+      "meetupUrl": "https://www.meetup.com/members/359418558/",
+      "meetupId": "359418558",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "abrahamcheong1689",
+      "meetupUrl": "https://www.meetup.com/members/480984199/",
+      "meetupId": "480984199",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Hammad Abdullah",
+      "meetupUrl": "https://www.meetup.com/members/481003416/",
+      "meetupId": "481003416",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Karim Amirali",
+      "meetupUrl": "https://www.meetup.com/members/336191123/",
+      "meetupId": "336191123",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "milind",
+      "meetupUrl": "https://www.meetup.com/members/480161242/",
+      "meetupId": "480161242",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "apoorva galigari",
+      "meetupUrl": "https://www.meetup.com/members/429005780/",
+      "meetupId": "429005780",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "josephwork",
+      "meetupUrl": "https://www.meetup.com/members/480953708/",
+      "meetupId": "480953708",
+      "city": "Sydney",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Henry",
+      "meetupUrl": "https://www.meetup.com/members/481107364/",
+      "meetupId": "481107364",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "James Neal",
+      "meetupUrl": "https://www.meetup.com/members/466496933/",
+      "meetupId": "466496933",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Boleslav",
+      "meetupUrl": "https://www.meetup.com/members/477838935/",
+      "meetupId": "477838935",
+      "city": "Sydney",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Jarrod Pickford",
+      "meetupUrl": "https://www.meetup.com/members/329946517/",
+      "meetupId": "329946517",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Martin",
+      "meetupUrl": "https://www.meetup.com/members/400926498/",
+      "meetupId": "400926498",
+      "city": "Perth",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Megan",
+      "meetupUrl": "https://www.meetup.com/members/477223627/",
+      "meetupId": "477223627",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Cedric E",
+      "meetupUrl": "https://www.meetup.com/members/474861349/",
+      "meetupId": "474861349",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "astha",
+      "meetupUrl": "https://www.meetup.com/members/471485399/",
+      "meetupId": "471485399",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Amanda",
+      "meetupUrl": "https://www.meetup.com/members/223838535/",
+      "meetupId": "223838535",
+      "city": "Brisbane",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Nicole",
+      "meetupUrl": "https://www.meetup.com/members/294592723/",
+      "meetupId": "294592723",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Leh Hee Sia",
+      "meetupUrl": "https://www.meetup.com/members/361494918/",
+      "meetupId": "361494918",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Robert T",
+      "meetupUrl": "https://www.meetup.com/members/185287761/",
+      "meetupId": "185287761",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Angela",
+      "meetupUrl": "https://www.meetup.com/members/200123440/",
+      "meetupId": "200123440",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Bryan Bryan",
+      "meetupUrl": "https://www.meetup.com/members/481450325/",
+      "meetupId": "481450325",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Ivana Sizer",
+      "meetupUrl": "https://www.meetup.com/members/265742814/",
+      "meetupId": "265742814",
+      "city": "Perth",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Hannie Hoang",
+      "meetupUrl": "https://www.meetup.com/members/376845139/",
+      "meetupId": "376845139",
+      "city": "Perth",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Andrew Gregor",
+      "meetupUrl": "https://www.meetup.com/members/210604211/",
+      "meetupId": "210604211",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "himesha.patel7",
+      "meetupUrl": "https://www.meetup.com/members/480390227/",
+      "meetupId": "480390227",
+      "city": "Sydney",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "swarnika kumari",
+      "meetupUrl": "https://www.meetup.com/members/232500950/",
+      "meetupId": "232500950",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Ken",
+      "meetupUrl": "https://www.meetup.com/members/146085082/",
+      "meetupId": "146085082",
+      "city": "Sydney",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Ulhas Mandrawadkar",
+      "meetupUrl": "https://www.meetup.com/members/186610919/",
+      "meetupId": "186610919",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "harman.singh",
+      "meetupUrl": "https://www.meetup.com/members/481749039/",
+      "meetupId": "481749039",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "KHUSHI GARG",
+      "meetupUrl": "https://www.meetup.com/members/475826053/",
+      "meetupId": "475826053",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Earl Cabrera",
+      "meetupUrl": "https://www.meetup.com/members/414031856/",
+      "meetupId": "414031856",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Frank",
+      "meetupUrl": "https://www.meetup.com/members/8702402/",
+      "meetupId": "8702402",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "febybaby2026",
+      "meetupUrl": "https://www.meetup.com/members/480414433/",
+      "meetupId": "480414433",
+      "city": "Sydney",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "maoyaqi6",
+      "meetupUrl": "https://www.meetup.com/members/477645356/",
+      "meetupId": "477645356",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Abdul Ahad Shams",
+      "meetupUrl": "https://www.meetup.com/members/481773205/",
+      "meetupId": "481773205",
+      "city": "Perth",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "desmondignatius3838",
+      "meetupUrl": "https://www.meetup.com/members/481874430/",
+      "meetupId": "481874430",
+      "city": "Jos",
+      "country": "NG",
+      "meetupUsername": null
+    },
+    {
+      "name": "Shri",
+      "meetupUrl": "https://www.meetup.com/members/481882381/",
+      "meetupId": "481882381",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Asif Foysal",
+      "meetupUrl": "https://www.meetup.com/members/284687368/",
+      "meetupId": "284687368",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "TOM at CHARITY CONSULTANTS",
+      "meetupUrl": "https://www.meetup.com/members/481166709/",
+      "meetupId": "481166709",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "sumitpatil41",
+      "meetupUrl": "https://www.meetup.com/members/481884784/",
+      "meetupId": "481884784",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "hasinduchamath8",
+      "meetupUrl": "https://www.meetup.com/members/481887578/",
+      "meetupId": "481887578",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Melissa Pollard",
+      "meetupUrl": "https://www.meetup.com/members/481897767/",
+      "meetupId": "481897767",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Divya Puthumanappully",
+      "meetupUrl": "https://www.meetup.com/members/481898161/",
+      "meetupId": "481898161",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Kritika",
+      "meetupUrl": "https://www.meetup.com/members/481898758/",
+      "meetupId": "481898758",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Victor",
+      "meetupUrl": "https://www.meetup.com/members/481900327/",
+      "meetupId": "481900327",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "kirubajayashreep1909",
+      "meetupUrl": "https://www.meetup.com/members/481901873/",
+      "meetupId": "481901873",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "steve",
+      "meetupUrl": "https://www.meetup.com/members/467603413/",
+      "meetupId": "467603413",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "iammarcusdizon",
+      "meetupUrl": "https://www.meetup.com/members/481902804/",
+      "meetupId": "481902804",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Milla Goldenberg",
+      "meetupUrl": "https://www.meetup.com/members/226479282/",
+      "meetupId": "226479282",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "setcosh",
+      "meetupUrl": "https://www.meetup.com/members/117294562/",
+      "meetupId": "117294562",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Matthew",
+      "meetupUrl": "https://www.meetup.com/members/327818700/",
+      "meetupId": "327818700",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Eva Lu",
+      "meetupUrl": "https://www.meetup.com/members/481928072/",
+      "meetupId": "481928072",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Arvind Narayan",
+      "meetupUrl": "https://www.meetup.com/members/257220881/",
+      "meetupId": "257220881",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "catheirna",
+      "meetupUrl": "https://www.meetup.com/members/473290334/",
+      "meetupId": "473290334",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "AJ",
+      "meetupUrl": "https://www.meetup.com/members/391973720/",
+      "meetupId": "391973720",
+      "city": "Auckland",
+      "country": "NZ",
+      "meetupUsername": null
+    },
+    {
+      "name": "Pat Annett",
+      "meetupUrl": "https://www.meetup.com/members/319483962/",
+      "meetupId": "319483962",
+      "city": "Canberra",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Pasath",
+      "meetupUrl": "https://www.meetup.com/members/482030396/",
+      "meetupId": "482030396",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "cden903",
+      "meetupUrl": "https://www.meetup.com/members/468362136/",
+      "meetupId": "468362136",
+      "city": "Auckland",
+      "country": "NZ",
+      "meetupUsername": null
+    },
+    {
+      "name": "Baba Kushwaha",
+      "meetupUrl": "https://www.meetup.com/members/414563279/",
+      "meetupId": "414563279",
+      "city": "St Kilda",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Anamul Hoque Robin",
+      "meetupUrl": "https://www.meetup.com/members/475256859/",
+      "meetupId": "475256859",
+      "city": "Newcastle",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "jzha346",
+      "meetupUrl": "https://www.meetup.com/members/477491918/",
+      "meetupId": "477491918",
+      "city": "Auckland",
+      "country": "NZ",
+      "meetupUsername": null
+    },
+    {
+      "name": "Jigyasa Sharma",
+      "meetupUrl": "https://www.meetup.com/members/208445075/",
+      "meetupId": "208445075",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "ankitab1898",
+      "meetupUrl": "https://www.meetup.com/members/481771122/",
+      "meetupId": "481771122",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Beckham Nguyen",
+      "meetupUrl": "https://www.meetup.com/members/482100955/",
+      "meetupId": "482100955",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Alexandria Rose",
+      "meetupUrl": "https://www.meetup.com/members/370563951/",
+      "meetupId": "370563951",
+      "city": "Canberra",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Teddy Huang",
+      "meetupUrl": "https://www.meetup.com/members/182775248/",
+      "meetupId": "182775248",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "David",
+      "meetupUrl": "https://www.meetup.com/members/327638557/",
+      "meetupId": "327638557",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Jasmine",
+      "meetupUrl": "https://www.meetup.com/members/481723151/",
+      "meetupId": "481723151",
+      "city": "Auckland",
+      "country": "NZ",
+      "meetupUsername": null
+    },
+    {
+      "name": "Dove",
+      "meetupUrl": "https://www.meetup.com/members/403090607/",
+      "meetupId": "403090607",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Yuvraj",
+      "meetupUrl": "https://www.meetup.com/members/482141216/",
+      "meetupId": "482141216",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Jeff",
+      "meetupUrl": "https://www.meetup.com/members/482123647/",
+      "meetupId": "482123647",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Sean",
+      "meetupUrl": "https://www.meetup.com/members/482261552/",
+      "meetupId": "482261552",
+      "city": "Melbourne",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Sarala",
+      "meetupUrl": "https://www.meetup.com/members/415271297/",
+      "meetupId": "415271297",
+      "city": "Perth",
+      "country": "AU",
+      "meetupUsername": null
+    },
+    {
+      "name": "Chetan Ashtivkar",
+      "meetupUrl": "https://www.meetup.com/members/223974946/",
+      "meetupId": "223974946",
+      "city": "Mumbai",
+      "country": "IN",
+      "meetupUsername": null
+    }
+  ],
+  "enriched": true
+}
