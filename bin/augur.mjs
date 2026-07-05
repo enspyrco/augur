@@ -12,11 +12,17 @@
 //   (append --json for raw provenance-tagged facts; default is a human summary)
 //
 // Consent/legal: dig touches PUBLIC, logged-out endpoints only. See AUGUR-DESIGN §2.
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
 import { dig } from "../src/dig.mjs";
 import { resolve } from "../src/resolve.mjs";
 import { study } from "../src/study.mjs";
 import { compose } from "../src/compose.mjs";
+import { loadCohort } from "../src/cohort.mjs";
+import { fuse } from "../src/fuse.mjs";
+import { peopleJs, dashboardHtml } from "../src/render.mjs";
+import { publish } from "../src/publish.mjs";
+import { placeMemory } from "../src/place.mjs";
 
 const argv = process.argv.slice(2);
 const verb = argv[0];
@@ -126,9 +132,62 @@ async function cmdCompose() {
   console.log(`\n  receipts: ${r.receipts?.length || 0}   · draft only — review, then send by hand.`);
 }
 
+// ── cohort publish pipeline: fuse → render → publish (+ place memory leaf) ──────────
+function cohortArg() {
+  const id = optVal("--cohort") || (verb === "cohort" ? positional[0] : null);
+  if (!id) die('need --cohort <id>  (e.g. --cohort imagineering)');
+  return loadCohort(id);
+}
+
+function cmdFuse(c = cohortArg()) {
+  const roster = fuse(c);
+  mkdirSync(c.buildDir, { recursive: true });
+  writeFileSync(join(c.buildDir, "people.js"), peopleJs(c, roster));
+  const bridges = roster.people.filter((p) => p.kind === "bridge").length;
+  const withGh = roster.people.filter((p) => p.github).length;
+  const withNode = roster.people.filter((p) => p.memoryNode).length;
+  console.log(`fuse ${c.id}: ${roster.people.length} people (${bridges} bridges) · ${withGh} github · ${withNode} nodes → ${join(c.buildDir, "people.js")}`);
+  return roster;
+}
+
+function cmdRender(c = cohortArg()) {
+  mkdirSync(c.buildDir, { recursive: true });
+  writeFileSync(join(c.buildDir, "index.html"), dashboardHtml(c, { isPublic: false }));
+  console.log(`render ${c.id}: dashboard → ${join(c.buildDir, "index.html")}  (loads people.js)`);
+}
+
+function cmdPublish(c = cohortArg()) {
+  const roster = fuse(c);
+  const r = publish(c, roster);
+  console.log(`publish ${c.id}: ${r.count} people (${r.withGh} github), PII stripped → ${r.dir}`);
+}
+
+function cmdPlace(c = cohortArg()) {
+  const r = placeMemory(c, fuse(c));
+  console.log(`place ${c.id}: ${r.count} rows (${r.withGh} github, ${r.promoted} nodes) → ${r.path}`);
+}
+
+function cmdCohort() {
+  const sub = positional[1];
+  const c = cohortArg();
+  switch (sub) {
+    case "build": cmdFuse(c); cmdRender(c); cmdPlace(c); break;   // full local build
+    case "publish": cmdPublish(c); break;
+    case "fuse": cmdFuse(c); break;
+    case "render": cmdRender(c); break;
+    case "place": cmdPlace(c); break;
+    default: die('usage: augur cohort <id> build|publish|fuse|render|place');
+  }
+}
+
 switch (verb) {
   case "dig": await cmdDig(); break;
   case "resolve": await cmdResolve(); break;
+  case "fuse": cmdFuse(); break;
+  case "render": cmdRender(); break;
+  case "publish": cmdPublish(); break;
+  case "place": cmdPlace(); break;
+  case "cohort": cmdCohort(); break;
   case "study": await cmdStudy(); break;
   case "compose": await cmdCompose(); break;
   case undefined: case "--help": case "help":
