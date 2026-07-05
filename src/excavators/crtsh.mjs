@@ -30,6 +30,19 @@ const FREEMAIL = new Set([
   "zoho.com", "yandex.com", "mail.com", "hey.com", "tutanota.com",
 ]);
 
+// Platform / social / hosting domains: a URL to one of these in a profile field (e.g. a github
+// "blog" field pointing at twitter.com) is NOT the subject's own infrastructure — its certs belong
+// to the platform. Rejected like freemail. (Matched on the APEX, so user.github.io → github.io.)
+const PLATFORM = new Set([
+  "twitter.com", "x.com", "t.co", "github.com", "github.io", "gitlab.com", "bitbucket.org",
+  "linkedin.com", "facebook.com", "fb.com", "instagram.com", "threads.net", "tiktok.com",
+  "medium.com", "substack.com", "wordpress.com", "blogspot.com", "tumblr.com", "dev.to",
+  "youtube.com", "youtu.be", "twitch.tv", "reddit.com", "news.ycombinator.com",
+  "keybase.io", "mastodon.social", "bsky.app", "t.me", "telegram.me", "patreon.com",
+  "about.me", "linktr.ee", "gravatar.com", "stackoverflow.com", "stackexchange.com",
+  "notion.site", "notion.so", "google.com", "sites.google.com",
+]);
+
 // Minimal public-suffix awareness: enough to fold "host.sub.co.uk" → "sub.co.uk" not "co.uk".
 const MULTI_SUFFIX = new Set([
   "co.uk", "org.uk", "gov.uk", "ac.uk", "me.uk", "co.nz", "org.nz", "com.au", "net.au", "org.au",
@@ -43,17 +56,21 @@ const apexOf = (host) => {
 };
 
 // derive {domain, via} or null. `via` records provenance for the identity-link honesty note.
-const deriveDomain = (s) => {
-  if (s.domain) return { domain: String(s.domain).toLowerCase().replace(/^www\./, ""), via: "explicit domain" };
-  if (s.site) {
+// Exported so the keybase vein can reuse the same domain-derivation + guards. Rejects freemail AND
+// platform/social domains — neither is the subject's OWN infrastructure, so neither should be dug.
+export const deriveDomain = (s) => {
+  let domain = null, via = null;
+  if (s.domain) { domain = String(s.domain).toLowerCase().replace(/^www\./, ""); via = "explicit domain"; }
+  else if (s.site) {
     const m = String(s.site).match(/^(?:https?:\/\/)?(?:www\.)?([^/:?#\s]+)/i);
-    if (m) return { domain: m[1].toLowerCase(), via: "published site field" };
+    if (m) { domain = m[1].toLowerCase(); via = "published site field"; }
+  } else if (s.email && s.email.includes("@")) {
+    domain = s.email.split("@").pop().toLowerCase(); via = "email domain";
   }
-  if (s.email && s.email.includes("@")) {
-    const d = s.email.split("@").pop().toLowerCase();
-    if (d && !FREEMAIL.has(d)) return { domain: d, via: "email domain" };
-  }
-  return null;
+  if (!domain || !domain.includes(".")) return null;
+  const apex = apexOf(domain);
+  if (FREEMAIL.has(domain) || FREEMAIL.has(apex) || PLATFORM.has(apex)) return null; // not the subject's own infra
+  return { domain, via };
 };
 
 // One HTTP attempt. Captures the STATUS CODE (not just body shape) — crt.sh is notoriously flaky
@@ -142,7 +159,9 @@ export const crtsh = {
   name: "crtsh",
   applies: (s) => !!deriveDomain(s),
   async run(s) {
-    const { domain, via } = deriveDomain(s);
+    const dd = deriveDomain(s);
+    if (!dd) return { facts: [], source: "crt.sh", note: "no diggable domain (freemail/platform/none)" };
+    const { domain, via } = dd;
     const res = await fetchCT(domain);
     if (res.status === "error") return { facts: [], source: "crt.sh", note: `curl failed for ${domain} (network/timeout — retry later, NOT "no certs")` };
     if (res.status === "blocked") return { facts: [], source: "crt.sh", note: `BLOCKED — crt.sh gateway/rate-limit (HTTP ${res.code ?? "?"}) for ${domain} (retry later; NOT "no certs")` };

@@ -8,6 +8,7 @@ export const RELIABILITY = {
   registry_officer: 0.97,   // government company registry — high
   scholarly_author: 0.85,   // name+topic match on a works index — good, not certain (namesakes)
   patent_inventor: 0.85,
+  keybase_proof: 0.95,      // cryptographically SIGNED cross-account sigchain proof (state==1 only) — top of the ladder
   handle_match: 0.68,       // 1 − 0.323 measured username-collision FP rate
   // crt.sh / Certificate Transparency — the RECORD is cryptographically anchored, but a cert
   // corroborates INFRASTRUCTURE, not a person; identity strength is capped by the domain-link source.

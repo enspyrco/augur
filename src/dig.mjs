@@ -18,10 +18,12 @@ import { openalex } from "./excavators/openalex.mjs";
 import { companiesHouse } from "./excavators/companies_house.mjs";
 import { patents } from "./excavators/patents.mjs";
 import { orcid } from "./excavators/orcid.mjs";
-import { crtsh } from "./excavators/crtsh.mjs";
+import { crtsh, deriveDomain } from "./excavators/crtsh.mjs";
+import { keybase } from "./excavators/keybase.mjs";
 
-// github first so its finds can seed name/site/email for downstream veins; crtsh last so it sees them.
-const EXCAVATORS = [github, openalex, patents, orcid, companiesHouse, crtsh];
+// github first so it can seed identifiers; keybase early (its SIGNED site/twitter can seed later
+// veins); crtsh last so it sees every discovered domain.
+const EXCAVATORS = [github, keybase, openalex, patents, orcid, companiesHouse, crtsh];
 
 /**
  * dig(subject) → { subject, facts:[{predicate,value,method,reliability,source}], veins:[{name,note}], identifiers:{...} }
@@ -36,12 +38,21 @@ export async function dig(subject) {
     const r = await ex.run(s);
     veins.push({ name: ex.name, source: r.source, note: r.note || null, facts: r.facts.length });
     for (const f of r.facts) facts.push({ ...f, vein: ex.name });
-    // let a github find seed name/site/email for downstream veins in the same dig
-    if (ex.name === "github") {
+    // Let HIGH-TRUST veins (github profile, keybase SIGNED proofs) seed identifiers for downstream
+    // veins in the same dig. Only these two — never a soft name-matched vein — so we don't propagate
+    // a namesake's domain/handle. keybase runs before crtsh, so a signed site seeds the cert dig.
+    if (ex.name === "github" || ex.name === "keybase") {
       const seed = (pred, key) => { if (!s[key]) { const f = r.facts.find((f) => f.predicate === pred); if (f) s[key] = f.value; } };
       seed("name", "name");
-      seed("site", "site");    // → crt.sh can dig the domain of their published homepage
-      seed("email", "email");  // → crt.sh can dig a non-freemail email domain
+      seed("email", "email");      // → crt.sh can dig a non-freemail email domain
+      seed("twitter", "twitter");  // → keybase can root on a twitter proof
+      seed("keybase", "keybase");  // → (harmless) records the hub identifier on the subject
+      // site: only seed a site that yields a REAL infra domain — reject a social/platform URL in a
+      // profile field (a github "blog" pointing at twitter.com), and let a later signed site override it.
+      if (!deriveDomain(s)) {
+        const good = r.facts.find((f) => f.predicate === "site" && deriveDomain({ site: f.value }));
+        if (good) s.site = good.value;
+      }
     }
   }
 

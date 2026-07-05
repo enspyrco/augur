@@ -2,7 +2,7 @@
 // CDN-bundle rejection, few-tenant co-tenancy linking, and apex substring-safety.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { analyzeRows } from "../src/excavators/crtsh.mjs";
+import { analyzeRows, deriveDomain } from "../src/excavators/crtsh.mjs";
 
 const val = (facts, pred) => facts.filter((f) => f.predicate === pred).map((f) => f.value);
 const cert = (names, not_before) => ({ name_value: names.join("\n"), not_before });
@@ -59,4 +59,20 @@ test("note stamps the domain-link provenance (softness is contagious upward)", (
   const { note } = analyzeRows([cert(["mine.com"], "2020-01-01")], "mine.com", "email domain");
   assert.match(note, /link via email domain/);
   assert.match(note, /certs corroborate the domain, not the person/);
+});
+
+test("deriveDomain rejects freemail, platform, and social-URL profile fields; keeps real domains", () => {
+  // real infrastructure domains — kept
+  assert.deepEqual(deriveDomain({ domain: "enspyr.co" }), { domain: "enspyr.co", via: "explicit domain" });
+  assert.equal(deriveDomain({ site: "https://www.maxk.org/blog" }).domain, "maxk.org");
+  assert.equal(deriveDomain({ email: "nick@enspyr.co" }).domain, "enspyr.co");
+  // freemail — rejected
+  assert.equal(deriveDomain({ email: "x@gmail.com" }), null);
+  // platform/social URL in a profile field (the maxtaco bug) — rejected, no false infra attribution
+  assert.equal(deriveDomain({ site: "http://twitter.com/#!/maxtaco" }), null);
+  assert.equal(deriveDomain({ site: "https://github.com/maxtaco" }), null);
+  assert.equal(deriveDomain({ site: "https://someuser.github.io" }), null, "github.io pages host belongs to github");
+  assert.equal(deriveDomain({ site: "https://medium.com/@writer" }), null);
+  // nothing to derive
+  assert.equal(deriveDomain({ name: "Jane" }), null);
 });
