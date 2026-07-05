@@ -9,6 +9,11 @@ export const RELIABILITY = {
   scholarly_author: 0.85,   // name+topic match on a works index — good, not certain (namesakes)
   patent_inventor: 0.85,
   handle_match: 0.68,       // 1 − 0.323 measured username-collision FP rate
+  // crt.sh / Certificate Transparency — the RECORD is cryptographically anchored, but a cert
+  // corroborates INFRASTRUCTURE, not a person; identity strength is capped by the domain-link source.
+  ct_linked_domain: 0.8,    // two apexes co-listed on ONE cert (few-tenant) → same operator (strong)
+  ct_record: 0.7,           // cert count / first-seen — the domain runs real, dated infrastructure
+  ct_infra: 0.55,           // a subdomain footprint — real hosts, but weak binding to the subject
 };
 
 export const fact = (predicate, value, method, source) => ({

@@ -5,7 +5,8 @@
   "type": "module",
   "bin": { "augur": "bin/augur.mjs" },
   "scripts": {
-    "dig": "node bin/augur.mjs dig"
+    "dig": "node bin/augur.mjs dig",
+    "test": "node --test"
   },
   "license": "UNLICENSED",
   "private": true
