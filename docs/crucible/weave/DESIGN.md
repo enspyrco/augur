@@ -95,3 +95,37 @@ O(1) amortized for U + O(pages_T) per target. Token-bucket batches against the G
 - **OV4:** Where does the consent-tier gate live — inside `weave()` reading the dig result's tier, or enforced by the caller? Proposed: inside `weave()`, fail-closed if tier absent (uncertainty removes authority).
 - **OV5:** Empty-result UX in compose — confirmed §4-Stone-2: fall back to cold-open, surface `_weave:"no-path"` in the envelope, never silent.
 - **OV6 (empirical — resolved into a build-order gate):** a quick local probe CANNOT cleanly measure the hit-rate — the strong co-commit signal needs the real GraphQL `repositoriesContributedTo` instrument (Stone 1 itself), not the 30-day/owned-only REST window a probe can reach, and a naive shared-dep parser reads `pyproject.toml` metadata keys as fake deps. What the probe DID show directionally: even a best-case same-ecosystem pair (simonw × carltongibson, both Django core) shared only **1 co-star, 0 recent co-commit** — consistent with the literature's sparsity. **Resolution: Stone 1 is promoted to a MEASUREMENT stone.** Its first deliverable is a real hit-rate (co-commit ∪ shared-dep) across ~10 real (target, us) pairs, same-eco and cross-eco. **If that hit-rate is near-zero, Stone 2 (compose integration) is NOT built** — weave ships as a standalone `augur weave` diagnostic and the honest conclusion is "broker-weave / same-eco-only, not universal compose-warming." The build order gates itself on the falsifier.
+
+---
+
+# TEMPER ROUND 1 — verdict + folds (2026-07-11)
+
+Cross-family design strike: **Maxwell** REQUEST_CHANGES · **Kelvin** APPROVE · **Carnot** REQUEST_CHANGES · **Tesla** REQUEST_CHANGES. Full reviews in `temper-{maxwell,kelvin,carnot,tesla}.md`. All four agree the inverse-query *reframe* is sound and empty-first is honest; the mold needs a re-pour on five rhyming principles. Folds below.
+
+### P1 — "warm path" is a wrong label; the signal is a *receipted relevance hook* that needs a QUALITY gate (Carnot, Tesla, Maxwell-M4)
+- **FOLD:** rename "warm path" → **shared public artifact / receipted relevance hook** throughout. A shared artifact is relevance evidence, not a social introduction.
+- **FOLD:** define **HIT** with a quality gate — a non-empty intersection is *necessary, not sufficient*. Exclude high-degree (mega) repos (contributor/star cap), require **dual non-trivial contribution** on both sides, prefer a **co-temporal** window (same repo 8 years apart ≠ a path). Mega-repo demotion is STRUCTURAL (drop from the warm set), not a 0.90 prior + tasteful prompt.
+- **FOLD:** drop multi-vein OR from the C1 *warmth* defence — it raises recall by lowering semantic quality. It is a separate precision/recall experiment run only after co-commit hit *quality* is known.
+- **FOLD:** split the §3.1 reliability prior into **factual/identity confidence** (login-unique → high) vs **signal strength / outreach appropriateness** (mega-repo → low). One number conflated two axes.
+
+### P2 — the measurement protocol must be pre-registered + instrument-canaried or it launders the go/kill (Tesla, Carnot, Kelvin-C4, Maxwell-M5)
+- **FOLD:** Stone 1 splits: **1a = instrument canary** (pagination completeness, COMMIT-vs-PR/issue/review coverage, fork/transfer handling, a **known-pair positive control** + a **mega-repo negative control**) runs BEFORE any hit-rate. A truncated instrument makes "near-zero → don't build" a false kill.
+- **FOLD:** **1b = hit-rate on the REAL compose distribution** (people enspyr actually composes — NOT a celebrity convenience set), stratified same-eco / cross-eco and reported separately (the C1 residual IS the product boundary).
+- **FOLD:** Stone 1 measures **co-commit ONLY** — removing the §OV6 `co-commit ∪ shared-dep` contradiction (shared-dep is Stone 3, and the probe already showed fake deps from pyproject metadata keys contaminating it).
+- **FOLD:** pre-register the **kill threshold as a NUMBER before the run** (proposed: <20% of same-eco real-target pairs yield ≥1 *quality-gated* co-commit → Stone 2 not justified). Name the honest **third kill outcome**: "do not productize weave; invest in cold `compose`" — broker-weave is NOT the automatic consolation prize.
+
+### P3 — the receipt-firewall firewalls out weave's own receipts (Maxwell-M1, source-verified `compose.mjs:20,46`)
+- **FOLD:** weave's shared-artifact sources are **independently verified against the live GitHub API**, so they are first-class receipts. Stone 2 must UNION them into compose's trusted-source set — NOT validate them against `study`'s top-8-by-stars owned-repo set (which structurally excludes shared/contributed-to repos). Without this, a successful weave is firewalled to cold-open anyway.
+
+### P4 — LEAD tier ≠ composite consent; name the threat model honestly (Carnot, Tesla, Kelvin)
+- **FOLD:** stop calling LEAD a "consent spine" for composite assembly — a BD funnel stage is purpose for *outreach*, not for forensic collaboration-graph assembly, and an operator can stamp a tier on anyone (fail-closed for missing fields ≠ safe against a hostile operator).
+- **FOLD:** for the augur reality (single trusted operator, Nick/enspyr BD), **name it as the accepted threat model**: "single-operator trust; consent is process, not multi-tenant enforcement." Concrete hardening that follows: **weave DEFAULT-OFF in compose** (opt-in per target after a human glance at `augur weave`), **never auto-run on a bare name**, **no bulk mode**, operator **purpose attestation**. Rate-limit + self-log is theater against the operator and is dropped as a "cage" claim.
+- **NAMED TRADEOFF (may stay named):** surfacing-to-subject happens after the composite already influenced outbound — accepted for a single-operator BD tool, flagged not solved.
+
+### P5 — WRONG OPTION-FRAME (escalated to Nick — changes the MVP, not a silent fold) (Tesla-#6, Carnot-#10)
+The design locks `compose(target)` as fixed and forces weave to win a hostile prior (arbitrary cold T). Both Carnot and Tesla independently name a frame the menu excluded:
+- **Frame C0 — manual receipt:** `compose(target, {shared_artifact: url})` — the operator supplies an overlap they already know. Zero GraphQL career-walk, zero stalking primitive, zero mega-repo auto-join. The receipt-firewall already exists to validate it.
+- **Frame C — invert for DISCOVERY, not warming:** given stable R_U, list co-contributors on **U's own small/medium repos** — those people are *definitionally* on a quality-gated warm edge. Sparsity of random T×U stops being the load-bearing bet. Still the inverse query of the github excavator, aimed at "who is warm-reachable?" instead of "is this cold target secretly warm?"
+- **This is escalated, not decided** — it changes what the MVP *is*, which is a product-taste call. See the decision fork presented to Nick.
+
+**Temper status:** design SURVIVES as a reframe; folds P1-P4 to be re-cast into a v2 body once P5's frame is chosen (the frame determines whether Stone 1 measures "arbitrary-T hit-rate" or "R_U discovery yield"). NOT yet Blade-ready — the frame gates the build order.
