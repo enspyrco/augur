@@ -7,6 +7,9 @@
 // merge (it informs the message, never the same_as graph). Runs on a resolved
 // NODE only — you study people dig has already placed. Public, logged-out sources.
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 import { dig } from "./dig.mjs";
 import { llm } from "./llm.mjs";
 
@@ -87,4 +90,64 @@ ${corpus}`;
     .filter((f) => f && f.predicate && f.value)
     .map((f) => studyFact(f.predicate, f.value, f.method, valid.has(f.source) ? f.source : (sources[0] || null)));
   return { subject: digResult.subject, handle, studyFacts, sources, repoCount: repos.length };
+}
+
+// ── us-cache ────────────────────────────────────────────────────────────────
+// study(us) is ~90-100s (a claude -p turn + dig veins), yet `us` is the SAME on
+// every compose. Caching it is worth ~100s/compose — but `us` is not invariant,
+// it's low-velocity: a stale cache would drop your freshest work from the intro.
+// So we cache behind a CHEAP freshness-probe (one repos call, sub-second), not a
+// blind TTL: if no repo has been pushed since the cache was built, serve it.
+// The TTL is only a floor for inputs the fingerprint can't see (bio, web claims).
+const US_CACHE_DIR = ".augur/cache";
+export const US_CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30d floor
+
+const optsKeyOf = (o = {}) => `r${o.topRepos ?? 8}m${o.readmes ?? 5}`;
+
+// Change-detector over exactly what study reads: every non-fork repo's pushed_at.
+// A code push OR a README edit is a commit, so both move pushed_at. Pure.
+export function reposFingerprint(repos) {
+  const sig = (repos || [])
+    .filter((r) => r && !r.fork)
+    .map((r) => `${r.full_name}@${r.pushed_at}`)
+    .sort()
+    .join("\n");
+  return createHash("sha1").update(sig).digest("hex");
+}
+
+// Serve the cache only if it exists, options match, repos are unchanged, and it's
+// under the TTL floor — unless refresh forces a rebuild. Pure (nowMs injected).
+export function cacheDecision({ cached, fingerprint, optsKey, nowMs, ttlMs = US_CACHE_TTL_MS, refresh = false }) {
+  if (refresh) return { fresh: false, reason: "refresh" };
+  if (!cached) return { fresh: false, reason: "no-cache" };
+  if (cached.optsKey !== optsKey) return { fresh: false, reason: "opts-changed" };
+  if (cached.fingerprint !== fingerprint) return { fresh: false, reason: "repos-changed" };
+  if (nowMs - Date.parse(cached.builtAt) > ttlMs) return { fresh: false, reason: "ttl-expired" };
+  return { fresh: true, reason: "hit" };
+}
+
+// study() with the freshness-gated cache. Only caches by a known string handle
+// (the `us` case); a NODE-object input falls straight through to study().
+export async function studyCached(handle, { refresh = false, ...studyOpts } = {}) {
+  if (typeof handle !== "string") return study(handle, studyOpts);
+  const optsKey = optsKeyOf(studyOpts);
+  const file = `${US_CACHE_DIR}/${handle}.json`;
+
+  const repos = ghJson(`users/${handle}/repos?per_page=100&sort=updated`) || [];
+  const fingerprint = reposFingerprint(repos);
+
+  let cached = null;
+  try { cached = JSON.parse(readFileSync(file, "utf8")); } catch { /* missing/corrupt → rebuild */ }
+
+  const { fresh, reason } = cacheDecision({ cached, fingerprint, optsKey, nowMs: Date.now(), refresh });
+  if (fresh) return { ...cached.result, _cache: "hit" };
+
+  const result = await study(handle, studyOpts);
+  if (result.studyFacts?.length) { // never cache an empty/failed study
+    try {
+      mkdirSync(dirname(file), { recursive: true });
+      writeFileSync(file, JSON.stringify({ handle, optsKey, fingerprint, builtAt: new Date().toISOString(), result }, null, 2));
+    } catch { /* cache is best-effort — a write failure must not break study */ }
+  }
+  return { ...result, _cache: reason };
 }

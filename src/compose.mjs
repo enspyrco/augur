@@ -7,12 +7,12 @@
 //   2. Anti-creepiness firewall (§8.2): a claim about them survives only if its
 //      receipt resolves to one of THEIR real public sources. We VERIFY the model's
 //      receipts against the study-fact source set — never trust self-reported provenance.
-import { study } from "./study.mjs";
+import { study, studyCached } from "./study.mjs";
 import { llm } from "./llm.mjs";
 
-export async function compose(targetHandle, usHandle, { broker = null, studyOpts = {} } = {}) {
-  const t = await study(targetHandle, studyOpts);
-  const u = await study(usHandle, studyOpts);
+export async function compose(targetHandle, usHandle, { broker = null, studyOpts = {}, refreshUs = false } = {}) {
+  const t = await study(targetHandle, studyOpts);          // target: always fresh
+  const u = await studyCached(usHandle, { ...studyOpts, refresh: refreshUs }); // us: freshness-gated cache
   if (!t.studyFacts.length) return { target: targetHandle, draft: "", rhyme: null, receipts: [], cut: [], note: `no study facts for target ${targetHandle}` };
   if (!u.studyFacts.length) return { target: targetHandle, draft: "", rhyme: null, receipts: [], cut: [], note: `no study facts for us (${usHandle})` };
 
@@ -55,5 +55,6 @@ Return ONLY JSON:
     receipts,
     cut: [...(out.cut || []), ...fabricated],
     _facts: { target: t.studyFacts.length, us: u.studyFacts.length },
+    _usCache: u._cache || null, // "hit" | "no-cache" | "repos-changed" | "ttl-expired" | "refresh" | ...
   };
 }

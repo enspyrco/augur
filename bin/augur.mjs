@@ -120,10 +120,11 @@ async function cmdStudy() {
 async function cmdCompose() {
   const target = optVal("--target") || positional[0];
   const us = optVal("--us");
-  if (!target || !us) die('usage: augur compose <target-handle> --us <your-handle> [--broker "Name"]');
-  const r = await compose(target, us, { broker: optVal("--broker") });
+  if (!target || !us) die('usage: augur compose <target-handle> --us <your-handle> [--broker "Name"] [--refresh-us]');
+  const r = await compose(target, us, { broker: optVal("--broker"), refreshUs: has("--refresh-us") });
   if (has("--json")) { console.log(JSON.stringify(r, null, 2)); return; }
-  console.log(`\n◆ compose  ${target}  ✕  ${us}`);
+  const cacheTag = r._usCache === "hit" ? " (us: cached)" : r._usCache ? ` (us: rebuilt — ${r._usCache})` : "";
+  console.log(`\n◆ compose  ${target}  ✕  ${us}${cacheTag}`);
   if (r.rhyme) console.log(`\n  RHYME: ${r.rhyme}\n`);
   console.log("  ── DRAFT (never sent) ─────────────────────────────");
   console.log(r.draft.split("\n").map((l) => "  " + l).join("\n"));

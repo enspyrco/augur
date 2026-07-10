@@ -10,3 +10,6 @@ cohorts/*/public/
 /STUDY-COMPOSE.md
 /cohorts/
 /RHYME-MATRIX.md
+
+# study(us) freshness-gated cache (regenerable)
+.augur/
