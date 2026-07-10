@@ -8,7 +8,7 @@
 // NODE only — you study people dig has already placed. Public, logged-out sources.
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, renameSync } from "node:fs";
 import { dirname } from "node:path";
 import { dig } from "./dig.mjs";
 import { llm } from "./llm.mjs";
@@ -101,43 +101,61 @@ ${corpus}`;
 // The TTL is only a floor for inputs the fingerprint can't see (bio, web claims).
 const US_CACHE_DIR = ".augur/cache";
 export const US_CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30d floor
+const CACHE_V = 1; // envelope version — bump to invalidate every cache on a schema change
+// GitHub username grammar: 1-39 chars, alphanumeric or hyphen, no leading/trailing/double
+// hyphen. Also fences the cache filename against path traversal (`../x`) — an unknown-shape
+// handle is uncacheable, not a write primitive.
+const GH_HANDLE = /^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/;
 
 const optsKeyOf = (o = {}) => `r${o.topRepos ?? 8}m${o.readmes ?? 5}`;
 
-// Change-detector over exactly what study reads: every non-fork repo's pushed_at.
-// A code push OR a README edit is a commit, so both move pushed_at. Pure.
+// Change-detector over what study actually selects: study ranks non-fork repos BY STARS
+// and takes the top-N, so the fingerprint must move on a push (pushed_at) AND on a
+// star-rank shift that could change top-N membership (stargazers_count) — else a repo
+// gaining stars silently displaces another with no pushed_at change and we serve stale
+// facts. Pure. (Cross-cutting inputs the fingerprint can't see — bio, web-search claims —
+// are covered by the TTL floor, by design.)
 export function reposFingerprint(repos) {
   const sig = (repos || [])
     .filter((r) => r && !r.fork)
-    .map((r) => `${r.full_name}@${r.pushed_at}`)
+    .map((r) => `${r.full_name}@${r.pushed_at}#${r.stargazers_count ?? 0}`)
     .sort()
     .join("\n");
   return createHash("sha1").update(sig).digest("hex");
 }
 
-// Serve the cache only if it exists, options match, repos are unchanged, and it's
-// under the TTL floor — unless refresh forces a rebuild. Pure (nowMs injected).
+// Serve the cache only if it exists, options match, repos are unchanged, builtAt is a
+// real past timestamp, and it's under the TTL floor — unless refresh forces a rebuild.
+// Pure (nowMs injected). Fails CLOSED on a NaN/future builtAt: a malformed or poisoned
+// timestamp must trigger a rebuild, never `NaN > ttl === false` → stale-forever.
 export function cacheDecision({ cached, fingerprint, optsKey, nowMs, ttlMs = US_CACHE_TTL_MS, refresh = false }) {
   if (refresh) return { fresh: false, reason: "refresh" };
   if (!cached) return { fresh: false, reason: "no-cache" };
   if (cached.optsKey !== optsKey) return { fresh: false, reason: "opts-changed" };
   if (cached.fingerprint !== fingerprint) return { fresh: false, reason: "repos-changed" };
-  if (nowMs - Date.parse(cached.builtAt) > ttlMs) return { fresh: false, reason: "ttl-expired" };
+  const builtMs = Date.parse(cached.builtAt);
+  if (!Number.isFinite(builtMs) || builtMs > nowMs) return { fresh: false, reason: "invalid-builtAt" };
+  if (nowMs - builtMs > ttlMs) return { fresh: false, reason: "ttl-expired" };
   return { fresh: true, reason: "hit" };
 }
 
-// study() with the freshness-gated cache. Only caches by a known string handle
-// (the `us` case); a NODE-object input falls straight through to study().
+// study() with the freshness-gated cache. Only caches by a valid GitHub handle string
+// (the `us` case); a NODE-object or unknown-shape handle falls straight through to study().
 export async function studyCached(handle, { refresh = false, ...studyOpts } = {}) {
-  if (typeof handle !== "string") return study(handle, studyOpts);
+  if (typeof handle !== "string" || !GH_HANDLE.test(handle)) return study(handle, studyOpts);
   const optsKey = optsKeyOf(studyOpts);
   const file = `${US_CACHE_DIR}/${handle}.json`;
 
   const repos = ghJson(`users/${handle}/repos?per_page=100&sort=updated`) || [];
   const fingerprint = reposFingerprint(repos);
 
+  // Read the cache as UNTRUSTED input: accept it only if the envelope version, the handle
+  // identity, and the result shape all check out — otherwise it's a miss, not a serve.
   let cached = null;
-  try { cached = JSON.parse(readFileSync(file, "utf8")); } catch { /* missing/corrupt → rebuild */ }
+  try {
+    const raw = JSON.parse(readFileSync(file, "utf8"));
+    if (raw && raw.v === CACHE_V && raw.handle === handle && Array.isArray(raw.result?.studyFacts)) cached = raw;
+  } catch { /* missing/corrupt/foreign → rebuild */ }
 
   const { fresh, reason } = cacheDecision({ cached, fingerprint, optsKey, nowMs: Date.now(), refresh });
   if (fresh) return { ...cached.result, _cache: "hit" };
@@ -146,7 +164,11 @@ export async function studyCached(handle, { refresh = false, ...studyOpts } = {}
   if (result.studyFacts?.length) { // never cache an empty/failed study
     try {
       mkdirSync(dirname(file), { recursive: true });
-      writeFileSync(file, JSON.stringify({ handle, optsKey, fingerprint, builtAt: new Date().toISOString(), result }, null, 2));
+      // atomic replace: write a per-process temp then rename, so a concurrent writer or a
+      // crash mid-write can never leave a torn/partial JSON file at the cache path.
+      const tmp = `${file}.${process.pid}.tmp`;
+      writeFileSync(tmp, JSON.stringify({ v: CACHE_V, handle, optsKey, fingerprint, builtAt: new Date().toISOString(), result }, null, 2));
+      renameSync(tmp, file);
     } catch { /* cache is best-effort — a write failure must not break study */ }
   }
   return { ...result, _cache: reason };

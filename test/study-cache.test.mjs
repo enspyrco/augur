@@ -26,6 +26,12 @@ test("forks are ignored — adding a fork does not move the fingerprint", () => 
   assert.equal(reposFingerprint(repos), reposFingerprint(withFork));
 });
 
+test("a star-count change moves the fingerprint (study ranks by stars, so top-N membership can shift with no push)", () => {
+  const base = repos.map((r) => ({ ...r, stargazers_count: 1 }));
+  const starred = [{ ...base[0], stargazers_count: 999 }, base[1]];
+  assert.notEqual(reposFingerprint(base), reposFingerprint(starred));
+});
+
 const fp = reposFingerprint(repos);
 const freshCache = { optsKey: "r8m5", fingerprint: fp, builtAt: "2026-07-09T00:00:00Z", result: { studyFacts: [1] } };
 
@@ -57,4 +63,16 @@ test("MISS: TTL floor exceeded even if fingerprint matches", () => {
 test("MISS: refresh forces rebuild even on a perfect hit", () => {
   const d = cacheDecision({ cached: freshCache, fingerprint: fp, optsKey: "r8m5", nowMs: T0, refresh: true });
   assert.deepEqual(d, { fresh: false, reason: "refresh" });
+});
+
+test("FAIL CLOSED: a malformed builtAt (Date.parse -> NaN) rebuilds, never serves stale forever", () => {
+  const poisoned = { ...freshCache, builtAt: "not-a-date" };
+  const d = cacheDecision({ cached: poisoned, fingerprint: fp, optsKey: "r8m5", nowMs: T0 });
+  assert.deepEqual(d, { fresh: false, reason: "invalid-builtAt" });
+});
+
+test("FAIL CLOSED: a future builtAt rebuilds (can't suppress the TTL by post-dating)", () => {
+  const future = { ...freshCache, builtAt: new Date(T0 + 86400000).toISOString() };
+  const d = cacheDecision({ cached: future, fingerprint: fp, optsKey: "r8m5", nowMs: T0 });
+  assert.equal(d.reason, "invalid-builtAt");
 });
