@@ -4,3 +4,8 @@ node_modules/
 /data/
 cohorts/*/build/
 cohorts/*/public/
+
+# Held back from the public engine repo — live privately in enspyrco/augur-internal
+/AUGUR-DESIGN.md
+/STUDY-COMPOSE.md
+/cohorts/

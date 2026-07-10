@@ -1,4 +1,4 @@
-// study — the SEMANTIC pass (STUDY-COMPOSE §2.1). Where `dig` answers "are these
+// study — the SEMANTIC pass. Where `dig` answers "are these
 // accounts the same person?" (forensic identity), `study` answers "what is this
 // person actually building, and why would they care?" (the living body of work).
 //
@@ -16,7 +16,7 @@ const sh = (cmd, args, timeout = 15000) => {
 };
 const ghJson = (path) => { const o = sh("gh", ["api", path]); try { return JSON.parse(o); } catch { return null; } };
 
-// Semantic reliability priors (STUDY-COMPOSE §2.1) — distinct from dig's forensic table.
+// Semantic reliability priors — distinct from dig's forensic table.
 export const STUDY_RELIABILITY = {
   repo_description: 0.85,
   readme_extract: 0.85,

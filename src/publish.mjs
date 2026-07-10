@@ -1,5 +1,5 @@
 // Augur — `publish`: emit a PII-STRIPPED public build of a cohort for the open web.
-// This is the AUGUR-DESIGN §2 consent spine made executable (a NEW augur capability, #1670).
+// This is the consent spine made executable (a NEW augur capability, #1670).
 //
 // The full fused roster carries PII (emails, Signal/Telegram, meetup URLs, curated notes
 // that embed social handles). publish emits ONLY the cohort's `publicAllowlist` fields +

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Augur CLI — people-intelligence engine. Build order per AUGUR-DESIGN.md §12: `dig` first.
+// Augur CLI — people-intelligence engine. Build order: `dig` first.
 //
 // Usage:
 //   augur dig <handle>                         github-rooted dig (a single individual)
@@ -11,7 +11,7 @@
 //   augur resolve --file people.json [--no-search]     resolve every {name,city,country}
 //   (append --json for raw provenance-tagged facts; default is a human summary)
 //
-// Consent/legal: dig touches PUBLIC, logged-out endpoints only. See AUGUR-DESIGN §2.
+// Consent/legal: dig touches PUBLIC, logged-out endpoints only.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { dig } from "../src/dig.mjs";
@@ -191,7 +191,7 @@ switch (verb) {
   case "study": await cmdStudy(); break;
   case "compose": await cmdCompose(); break;
   case undefined: case "--help": case "help":
-    console.log("augur <verb>\n\n  resolve --name \"X\" [--city Y --country AU]   name → GitHub handle (pre-dig)\n  dig <handle>            github-rooted excavation (a single individual)\n  dig --name \"X\" --hint \"field\"   name-rooted (scholarly + registry veins)\n  dig --name \"X\" --company <ukNo>  add UK Companies House officers\n\nVeins: github · openalex · companies_house  (roadmap: patents, keybase, npm, crt.sh, bluesky, ABR)\nBuild order (AUGUR-DESIGN §1): discover → resolve → dig → fuse → refute → place → weave");
+    console.log("augur <verb>\n\n  resolve --name \"X\" [--city Y --country AU]   name → GitHub handle (pre-dig)\n  dig <handle>            github-rooted excavation (a single individual)\n  dig --name \"X\" --hint \"field\"   name-rooted (scholarly + registry veins)\n  dig --name \"X\" --company <ukNo>  add UK Companies House officers\n\nVeins: github · openalex · companies_house  (roadmap: patents, keybase, npm, crt.sh, bluesky, ABR)\nBuild order: discover → resolve → dig → fuse → refute → place → weave");
     break;
   default: die(`unknown verb '${verb}'. try: augur dig <handle>`);
 }

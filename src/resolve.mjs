@@ -13,7 +13,7 @@
 //   high — name-verified AND location-matched   ·   med — name-verified, no location signal
 //   low  — a handle exists but name mismatched (a lead, never an assertion)   ·   none — nothing
 //
-// LEGAL-CLEAN: public, logged-out endpoints (GitHub public API) within rate limits. See AUGUR-DESIGN §2.
+// LEGAL-CLEAN: public, logged-out endpoints (GitHub public API) within rate limits.
 import { execFileSync } from "node:child_process";
 
 const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim().replace(/\s+/g, " ");

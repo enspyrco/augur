@@ -1,5 +1,5 @@
 // Augur — cohort loader. A cohort is a dataset+config instance of the augur pipeline
-// (AUGUR-DESIGN §1: "one engine + data/config instances"). It bundles harvested sources,
+// ("one engine + data/config instances"). It bundles harvested sources,
 // curated overrides, and the branding/consent config the publish verbs need.
 //
 // Layout:  cohorts/<id>/cohort.json  +  cohorts/<id>/data/{meetup,luma,overrides,dig}.json

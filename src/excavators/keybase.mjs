@@ -10,7 +10,7 @@
 //
 // HONESTY GUARD: assert ONLY proofs with state==1 (live/verified). A broken, pending, or revoked
 // proof (state!=1) is a CLAIM, not a corroboration — it is counted in the note but never becomes a
-// fact. And softness is contagious upward (AUGUR-DESIGN §3.4): the signed cluster binds to THE
+// fact. And softness is contagious upward: the signed cluster binds to THE
 // SUBJECT only as strongly as the root identifier does, so the note always stamps which root matched.
 import { execFileSync } from "node:child_process";
 import { fact } from "../fact.mjs";

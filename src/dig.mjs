@@ -1,4 +1,4 @@
-// Augur — `dig`: multi-vein public-artifact excavation (AUGUR-DESIGN §3, §11).
+// Augur — `dig`: multi-vein public-artifact excavation.
 //
 // dig is NO LONGER github-rooted. It takes a SUBJECT descriptor and runs every excavator
 // that applies, merging provenance-tagged facts. A subject can be rooted by any identifier:
@@ -8,11 +8,11 @@
 // Veins today: github (handle) · openalex (name → scholarly) · patents (name → inventions) ·
 // orcid (name → scholarly id) · companies_house (companyNumber → officers) ·
 // crtsh (domain → CT-log infrastructure footprint + operator-linked domains).
-// Roadmap veins (AUGUR-DESIGN §3.2-3.3, §11): Keybase, npm/PyPI, Bluesky, ABR/ACNC (AU).
+// Roadmap veins: Keybase, npm/PyPI, Bluesky, ABR/ACNC (AU).
 // Add a file under src/excavators/ + register below.
 //
 // LEGAL-CLEAN: every vein is a public, logged-out endpoint within rate limits. Never authenticates
-// as the target, never fakes accounts, never unmasks a noreply. See AUGUR-DESIGN §2 (consent spine).
+// as the target, never fakes accounts, never unmasks a noreply (consent spine).
 import { github } from "./excavators/github.mjs";
 import { openalex } from "./excavators/openalex.mjs";
 import { companiesHouse } from "./excavators/companies_house.mjs";

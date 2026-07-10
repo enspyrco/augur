@@ -1,9 +1,9 @@
-// compose — the intro synthesis (STUDY-COMPOSE §2.2). recombine is its engine.
+// compose — the intro synthesis. recombine is its engine.
 //
 // compose(target, us) runs /recombine across study(target) × study(us) to find the
 // RHYME (the third thing latent in the gap, A×B=C), then drafts an intro where every
 // claim about the target carries an inline receipt. Two load-bearing rules:
-//   1. DRAFTS, NEVER SENDS (STUDY-COMPOSE §2.4 red line) — output is a buffer.
+//   1. DRAFTS, NEVER SENDS (red line) — output is a buffer.
 //   2. Anti-creepiness firewall (§8.2): a claim about them survives only if its
 //      receipt resolves to one of THEIR real public sources. We VERIFY the model's
 //      receipts against the study-fact source set — never trust self-reported provenance.

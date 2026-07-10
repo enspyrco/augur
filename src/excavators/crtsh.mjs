@@ -5,13 +5,12 @@
 // RECORD ("a cert existed for host X, first seen D") is near-certain. But a cert proves the DOMAIN
 // exists and someone provisioned TLS for it — NOT that THIS subject controls it. So the identity-
 // corroboration strength is capped by the WEAKEST link: how we came to believe the domain is the
-// subject's at all. That link inherits the softness of its source (softness is contagious upward —
-// AUGUR-DESIGN §3.4); certs enrich the infra picture but never launder a self-asserted homepage
+// subject's at all. That link inherits the softness of its source (softness is contagious upward); certs enrich the infra picture but never launder a self-asserted homepage
 // into "confirmed ownership". The note always stamps the domain provenance so `fuse`/`refute` see it.
 //
 // Rooting: we need a domain the subject is plausibly linked to, derived (strongest first) from
 //   s.domain (explicit) > s.site (their published homepage) > the domain of s.email
-// FREE-MAIL is skipped — "nick@gmail.com" does not make the subject an owner of gmail.com's certs.
+// FREE-MAIL is skipped — "user@gmail.com" does not make the subject an owner of gmail.com's certs.
 //
 // crt.sh's JSON exposes name_value (the SANs) and issuer_name (the CA) — but NOT the cert subject's
 // Organization. So we do NOT try to read an "org" off the cert (that would assert the CA's name as
@@ -134,7 +133,7 @@ export const analyzeRows = (rows, domain, via) => {
     }
   }
 
-  const src = `crt.sh/?q=${domain}`;   // provenance stamp (AUGUR-DESIGN §2.5), same query we ran
+  const src = `crt.sh/?q=${domain}`;   // provenance stamp, same query we ran
   const facts = [];
   facts.push(fact("ct_cert_count", rows.length, "ct_record", src));
   if (earliest) facts.push(fact("ct_first_seen", earliest.slice(0, 10), "ct_record", src));
