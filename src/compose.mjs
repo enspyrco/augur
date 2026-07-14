@@ -9,6 +9,7 @@
 //      receipts against the study-fact source set — never trust self-reported provenance.
 import { study, studyCached } from "./study.mjs";
 import { llm } from "./llm.mjs";
+import { corroborate } from "./corroborate.mjs";
 
 export async function compose(targetHandle, usHandle, { broker = null, studyOpts = {}, refreshUs = false } = {}) {
   const t = await study(targetHandle, studyOpts);          // target: always fresh
@@ -43,10 +44,10 @@ Return ONLY JSON:
   catch (e) { return { target: t.handle, us: u.handle, draft: "", rhyme: null, receipts: [], cut: [], note: `compose llm failed: ${e.message}` }; }
 
   // Anti-creepiness firewall: keep only receipts whose source is a REAL target source.
-  const receipts = (out.receipts || []).filter((r) => r.source && targetSources.has(r.source));
-  const fabricated = (out.receipts || [])
-    .filter((r) => !r.source || !targetSources.has(r.source))
-    .map((r) => `${r.claim} (receipt not in target's public work)`);
+  // corroborate() is the shared trust spine (also the engine behind refute + weave).
+  const { corroborated: receipts, uncorroborated } =
+    corroborate(out.receipts || [], targetSources, (r) => r.source);
+  const fabricated = uncorroborated.map((r) => `${r.claim} (receipt not in target's public work)`);
 
   return {
     target: t.handle, us: u.handle,
