@@ -192,7 +192,7 @@ switch (verb) {
   case "study": await cmdStudy(); break;
   case "compose": await cmdCompose(); break;
   case undefined: case "--help": case "help":
-    console.log("augur <verb>\n\n  resolve --name \"X\" [--city Y --country AU]   name → GitHub handle (pre-dig)\n  dig <handle>            github-rooted excavation (a single individual)\n  dig --name \"X\" --hint \"field\"   name-rooted (scholarly + registry veins)\n  dig --name \"X\" --company <ukNo>  add UK Companies House officers\n\nVeins: github · openalex · companies_house  (roadmap: patents, keybase, npm, crt.sh, bluesky, ABR)\nBuild order: discover → resolve → dig → fuse → refute → place → weave");
+    console.log("augur <verb>\n\nIdentity is earned by corroboration, never granted by a name. augur digs ONE\nperson deeply across independent veins and reports how well they agree; it is\ndistinct from `social`, which harvests and discovers many. Never round strong\ncorroboration up to proved — a confident match is evidence, not an identity.\n\n  resolve --name \"X\" [--city Y --country AU]   name → GitHub handle (pre-dig)\n  dig <handle>            github-rooted excavation (a single individual)\n  dig --name \"X\" --hint \"field\"   name-rooted (scholarly + registry veins)\n  dig --name \"X\" --company <ukNo>  add UK Companies House officers\n\nVeins: github · openalex · companies_house  (roadmap: patents, keybase, npm, crt.sh, bluesky, ABR)\nBuild order: discover → resolve → dig → fuse → refute → place → weave");
     break;
   default: die(`unknown verb '${verb}'. try: augur dig <handle>`);
 }
